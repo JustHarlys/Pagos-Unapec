@@ -1,0 +1,50 @@
+.select-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  width: 70%;
+}
+
+option {
+  text-align: center; 
+}
+
+.landing-page-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.select-div {
+  margin-top: 20px;
+}
+
+.select-div select {
+  background-color: #141483;
+  transition: 0.5 ease all;
+  padding: 5px;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.select-div > p {
+  color: white;
+}
+
+option {
+  transition: 0.5 ease all;
+}
+
+.credits-div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.credits-div > input {
+  width: 10%;
+}
