@@ -38,13 +38,13 @@ option {
   transition: 0.5 ease all;
 }
 
-.credits-div {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
+.select-div > input {
+  width: 10%;
+  border-radius: 5px;
+  border: none;
 }
 
-.credits-div > input {
-  width: 10%;
+.label-credits {
+  margin-top: 20px;
+  margin-bottom: 10px;
 }

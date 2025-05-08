@@ -6,6 +6,11 @@ function LandingPage() {
   const [selectedGrade, setSelectedGrade] = useState('');
   const [totalCredits, setTotalCredits] = useState(0)
 
+  function handleOnChange(e) {
+    setTotalCredits(parseInt(e.target.value))
+    console.log(typeof(totalCredits))
+  }
+
   return (
     <>
     <section className="landing-page-section">
@@ -39,13 +44,14 @@ function LandingPage() {
           <option value="Grado">Grado</option>
           <option value="Posgrado">Posgrado</option>
         </select>
+
+        <label style={{color: 'white'}} className="label-credits">Total de créditos seleccionados: </label>
+        <input type="number" name="totalCredits" value={totalCredits} onChange={handleOnChange}/>
+
       </div>
 
 
-      <div className="credits-div">
-        <label style={{color: 'white'}}>Total de créditos seleccionados: </label>
-        <input type="number" name="credits" value={totalCredits}/>
-      </div>
+
 
     </section>
     </>
