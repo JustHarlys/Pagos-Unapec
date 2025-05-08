@@ -1,10 +1,10 @@
-import { useState } from "react"
-import './LandingPage.css'
+import './LandingPage.css';
+import { GradeAndPeriodContext } from '../Context/GradeAndPeriodContext';
+import { useContext } from 'react';
 
 function LandingPage() {
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedGrade, setSelectedGrade] = useState('');
-  const [totalCredits, setTotalCredits] = useState(0)
+
+  const {selectedCategory, setSelectedCategory, selectedGrade, setSelectedGrade, totalCredits, setTotalCredits} = useContext(GradeAndPeriodContext)
 
   function handleOnChange(e) {
     setTotalCredits(parseInt(e.target.value))
@@ -47,12 +47,7 @@ function LandingPage() {
 
         <label style={{color: 'white'}} className="label-credits">Total de créditos seleccionados: </label>
         <input type="number" name="totalCredits" value={totalCredits} onChange={handleOnChange}/>
-
       </div>
-
-
-
-
     </section>
     </>
   )
