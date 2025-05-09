@@ -4,4 +4,18 @@ nav {
     align-items: center;
     padding: 40px;
     color: white;
+    gap: 60px;
+    text-align: center;
+}
+
+.nav-items {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    font-weight: bold;
+}
+
+.nav-item {
+    color: white;
+    text-decoration: none;
 }

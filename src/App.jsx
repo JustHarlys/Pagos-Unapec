@@ -7,6 +7,7 @@ import GradeAndPeriodProvider from './Context/GradeAndPeriodContext'
 function App() {
 
   return (
+    
       <GradeAndPeriodProvider>
         <Nav />
         <LandingPage />

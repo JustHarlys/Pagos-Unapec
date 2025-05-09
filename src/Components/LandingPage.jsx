@@ -1,15 +1,22 @@
 import './LandingPage.css';
 import { GradeAndPeriodContext } from '../Context/GradeAndPeriodContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import { referenciasMayo } from '../referencias-may-ago';
+import { referenciasSep } from '../referencias-sep-dic';
 
 function LandingPage() {
 
   const {selectedCategory, setSelectedCategory, selectedGrade, setSelectedGrade, totalCredits, setTotalCredits} = useContext(GradeAndPeriodContext)
+  const [tuition, setTuition] = useState(0)
 
   function handleOnChange(e) {
     setTotalCredits(parseInt(e.target.value))
     console.log(typeof(totalCredits))
   }
+
+  function handleCreditsMultiplier() {
+    setTuition(totalCredits * referenciasMayo.creditos)
+  } 
 
   return (
     <>
@@ -47,6 +54,8 @@ function LandingPage() {
 
         <label style={{color: 'white'}} className="label-credits">Total de créditos seleccionados: </label>
         <input type="number" name="totalCredits" value={totalCredits} onChange={handleOnChange}/>
+        <p>Total Colegiatura: {tuition}</p>
+        <button onClick={handleCreditsMultiplier}>Calcular colegiatura</button>
       </div>
     </section>
     </>
