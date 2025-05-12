@@ -10,42 +10,55 @@ function Referencias() {
 
   const { recursosTec, creditos, labTec, carnet } = referenciasMayo
   const { recurstosTecSep, creditosSep, labtecSep, carnetSep} = referenciasSep
-
+  const creditosPosSep = creditos + 1835
+  const creditosPosMay = creditos + 1665
   let content = null;
 
   if (selectedGrade === 'Grado') {
     if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
       content = (
         <table>
-          <tr>
-            <th>Crédito</th>
-            <th>Recursos Técnologicos</th>
-            <th>Lab. Tecnología</th>
-            <th>Serv. de Carnet</th>
-          </tr>
-          <tr>
-            <td>RD$ {recursosTec}</td>
-            <td>RD$ {creditos}</td>
-            <td>RD$ {labTec}</td>
-            <td>RD$ {carnet}</td>
-          </tr>
+          <thead>
+            <tr>
+              <th>Crédito</th>
+              <td>RD$ {creditos}</td>
+            </tr>
+            <tr>
+              <th>Rec. Técnologicos</th>
+              <td>RD$ {recursosTec}</td>
+            </tr>
+            <tr>
+              <th>Lab. Tecnología</th>
+              <td>RD$ {labTec}</td>
+            </tr>
+            <tr>
+              <th>Serv. Carnet</th>
+              <td>RD$ {carnet}</td>
+            </tr>
+            </thead>
         </table>
       );
     } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
       content = (
         <table>
-          <tr>
-            <th>Crédito</th>
-            <th>Recursos Técnologicos</th>
-            <th>Lab. Tecnología</th>
-            <th>Serv. de Carnet</th>
-          </tr>
-          <tr>
-            <td>RD$ {recurstosTecSep}</td>
-            <td>RD$ {creditosSep}</td>
-            <td>RD$ {labtecSep}</td>
-            <td>RD$ {carnetSep}</td>
-        </tr>
+          <thead>
+            <tr>
+              <th>Crédito</th>
+              <td>RD$ {creditosSep}</td>
+            </tr>
+            <tr>
+              <th>Rec. Técnologicos</th>
+              <td>RD$ {recurstosTecSep}</td>
+            </tr>
+            <tr>
+              <th>Lab. Tecnología</th>
+              <td>RD$ {labtecSep}</td>
+            </tr>
+            <tr>
+              <th>Serv. Carnet</th>
+              <td>RD$ {carnetSep}</td>
+            </tr>
+            </thead>
         </table>
       );
     }
@@ -53,33 +66,47 @@ function Referencias() {
     if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
       content = (
         <table>
-          <tr>
-            <th>Crédito</th>
-            <th>Recursos Técnologicos</th>
-            <th>Lab. Tecnología</th>
-            <th>Serv. de Carnet</th>
-          </tr>
-          <td>RD$ {recursosTec}</td>
-          <td>RD$ {creditos + 1665}</td>
-          <td>RD$ {labTec}</td>
-          <td>RD$ {carnet}</td>
+          <thead>
+            <tr>
+              <th>Crédito</th>
+              <td>RD$ {creditosPosMay}</td>
+            </tr>
+            <tr>
+              <th>Rec. Técnologicos</th>
+              <td>RD$ {recursosTec}</td>
+            </tr>
+            <tr>
+              <th>Lab. Tecnología</th>
+              <td>RD$ {labTec}</td>
+            </tr>
+            <tr>
+              <th>Serv. Carnet</th>
+              <td>RD$ {carnet}</td>
+            </tr>
+            </thead>
         </table>
       )
     } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
       content = (
         <table>
-          <tr>
-            <th>Crédito</th>
-            <th>Recursos Técnologicos</th>
-            <th>Lab. Tecnología</th>
-            <th>Serv. de Carnet</th>
-          </tr>
-          <tr>
-            <td>RD$ {recursosTec}</td>
-            <td>RD$ {creditos + 1835.00}</td>
-            <td>RD$ {labTec}</td>
-            <td>RD$ {carnet}</td>
-          </tr>
+          <thead>
+            <tr>
+              <th>Crédito</th>
+              <td>RD$ {creditosPosSep}</td>
+            </tr>
+            <tr>
+              <th>Rec. Técnologicos</th>
+              <td>RD$ {recursosTec}</td>
+            </tr>
+            <tr>
+              <th>Lab. Tecnología</th>
+              <td>RD$ {labTec}</td>
+            </tr>
+            <tr>
+              <th>Serv. Carnet</th>
+              <td>RD$ {carnet}</td>
+            </tr>
+            </thead>
         </table>
       )
     }
@@ -87,7 +114,21 @@ function Referencias() {
 
   return (
     <section className="prices-reference">
-      {content}
+
+      <h3 className="calculations-h3"> Referencias de costos </h3>
+      <p className="calculations-p" style={{marginBottom: 20}}> Basados en tus selecciones </p>
+      
+      {selectedCategory === '' || selectedGrade === ''
+      ?
+      <p> Para ver las referencias, elija el período y el grado</p>
+      :
+        <div>
+        {content}
+        </div>
+      
+      }
+
+ 
     </section>
   )
 }

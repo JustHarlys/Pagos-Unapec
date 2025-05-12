@@ -1,65 +1,110 @@
-import './LandingPage.css';
+import {
+  Container,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+  Button,
+  Paper,
+} from '@mui/material';
+import { useContext } from 'react';
 import { GradeAndPeriodContext } from '../Context/GradeAndPeriodContext';
-import { useContext, useState } from 'react';
 import { referenciasMayo } from '../referencias-may-ago';
 import { referenciasSep } from '../referencias-sep-dic';
 
 function LandingPage() {
+  const {
+    selectedCategory,
+    setSelectedCategory,
+    selectedGrade,
+    setSelectedGrade,
+    totalCredits,
+    setTotalCredits,
+    setTuition
+  } = useContext(GradeAndPeriodContext);
 
-  const {selectedCategory, setSelectedCategory, selectedGrade, setSelectedGrade, totalCredits, setTotalCredits} = useContext(GradeAndPeriodContext)
-  const [tuition, setTuition] = useState(0)
+  const posgradoMayo = referenciasMayo.creditos + 1665
+  const posgradoSep = referenciasMayo.creditos + 1835
+
+
 
   function handleOnChange(e) {
-    setTotalCredits(parseInt(e.target.value))
-    console.log(typeof(totalCredits))
+    setTotalCredits(parseInt(e.target.value));
   }
 
   function handleCreditsMultiplier() {
-    setTuition(totalCredits * referenciasMayo.creditos)
-  } 
+
+    if (selectedGrade === 'Grado' ) {
+      if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
+        setTuition(totalCredits * referenciasMayo.creditos);
+      } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
+        setTuition(totalCredits * referenciasSep.creditosSep) 
+      }
+    }
+
+    else if (selectedGrade === 'Posgrado') {
+      if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
+        setTuition(totalCredits * posgradoMayo)
+      } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
+        setTuition(totalCredits * posgradoSep)
+      }
+    }
+  }
 
   return (
-    <>
-    <section className="landing-page-section">
-      <div className="select-div">
-        <p>Selecciona una categoría:</p>
-        <select 
-          name="selectedCategory" 
-          id="select-period" 
-          value={selectedCategory} 
-          onChange={e => setSelectedCategory(e.target.value)}
-        >
-          {selectedCategory === '' && (
-            <option value="">-- Selecciona una categoría --</option>
-          )}
-          <option value="Admitido a partir de sept-dic 2024">Admitido a partir de sept-dic 2024</option>
-          <option value="Admitido hasta mayo-ago 2024">Admitido hasta mayo-ago 2024</option>
-        </select>
-      </div>
+    <Container sx={{ mt: 4, width: '40%' }}>
+      <Paper elevation={3} sx={{ p: 4 }}>
+        <Typography variant="h5" gutterBottom>
+          Pre-planifica tu colegiatura
+        </Typography>
 
-      <div className="select-div">
-       <p> Selecciona un grado: </p>
-        <select 
-          name="selectedGrade" 
-          id="selected-grade" 
-          value={selectedGrade} 
-          onChange={e => setSelectedGrade(e.target.value)}
+        <FormControl fullWidth margin="normal">
+          <InputLabel>Categoría</InputLabel>
+          <Select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            label="Categoría"
           >
-          {selectedGrade === '' && (
-            <option value="">-- Selecciona un grado --</option>
-          )}
-          <option value="Grado">Grado</option>
-          <option value="Posgrado">Posgrado</option>
-        </select>
+            <MenuItem value="Admitido hasta mayo-ago 2024">
+              Admitido hasta mayo-ago 2024
+            </MenuItem>
+            <MenuItem value="Admitido a partir de sept-dic 2024">
+              Admitido a partir de sept-dic 2024
+            </MenuItem>
+          </Select>
+        </FormControl>
 
-        <label style={{color: 'white'}} className="label-credits">Total de créditos seleccionados: </label>
-        <input type="number" name="totalCredits" value={totalCredits} onChange={handleOnChange}/>
-        <p>Total Colegiatura: {tuition}</p>
-        <button onClick={handleCreditsMultiplier}>Calcular colegiatura</button>
-      </div>
-    </section>
-    </>
-  )
+        <FormControl fullWidth margin="normal">
+          <InputLabel>Grado</InputLabel>
+          <Select
+            value={selectedGrade}
+            onChange={(e) => setSelectedGrade(e.target.value)}
+            label="Grado"
+          >
+            <MenuItem value="Grado">Grado</MenuItem>
+            <MenuItem value="Posgrado">Posgrado</MenuItem>
+          </Select>
+        </FormControl>
+
+        <TextField
+          fullWidth
+          label="Total de créditos"
+          type="number"
+          value={totalCredits}
+          onChange={handleOnChange}
+          margin="normal"
+        />
+
+
+
+        <Button variant="contained" onClick={handleCreditsMultiplier} sx={{ mt: 2 }}>
+          Calcular colegiatura
+        </Button>
+      </Paper>
+    </Container>
+  );
 }
 
-export default LandingPage
+export default LandingPage;

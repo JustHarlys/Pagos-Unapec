@@ -5,7 +5,18 @@
 
 body {
   font-family: sans-serif;
-  max-width: 40%;
+  max-width: 70%;
   margin: 0 auto;
-  background-color: #020216;
+  background-color: rgb(254,254,255);
+}
+
+.app {
+  display: flex;
+  align-items: center;
+}
+
+.ref-calc {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
