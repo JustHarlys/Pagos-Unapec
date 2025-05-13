@@ -9,12 +9,13 @@ import {
   Button,
   Paper,
 } from '@mui/material';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { GradeAndPeriodContext } from '../Context/GradeAndPeriodContext';
 import { referenciasMayo } from '../referencias-may-ago';
 import { referenciasSep } from '../referencias-sep-dic';
 
 function LandingPage() {
+
   const {
     selectedCategory,
     setSelectedCategory,
@@ -22,7 +23,9 @@ function LandingPage() {
     setSelectedGrade,
     totalCredits,
     setTotalCredits,
-    setTuition
+    setTuition,
+    paymentMethod,
+    setPaymentMethod
   } = useContext(GradeAndPeriodContext);
 
   const posgradoMayo = referenciasMayo.creditos + 1665
@@ -36,11 +39,11 @@ function LandingPage() {
 
   function handleCreditsMultiplier() {
 
-    if (selectedGrade === 'Grado' ) {
-      if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
-        setTuition(totalCredits * referenciasMayo.creditos);
-      } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
-        setTuition(totalCredits * referenciasSep.creditosSep) 
+    if (selectedGrade === 'Grado') {
+      if (paymentMethod === 'Contado') {
+        if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
+          setTuition((totalCredits * referenciasMayo.creditos) - ((totalCredits * referenciasMayo.creditos) * 0.10))
+        }
       }
     }
 
@@ -85,6 +88,19 @@ function LandingPage() {
           >
             <MenuItem value="Grado">Grado</MenuItem>
             <MenuItem value="Posgrado">Posgrado</MenuItem>
+          </Select>
+        </FormControl>
+
+        <FormControl fullWidth margin='normal'>
+          <InputLabel>Método de Pago</InputLabel>
+          <Select
+          value={paymentMethod}
+          onChange={(e) => setPaymentMethod(e.target.value)}
+          label="PaymentMethod"
+          >
+            <MenuItem value="Contado">Pago de contado</MenuItem>
+            <MenuItem value="Anticipo del 30">Pago anticipado del 30%</MenuItem>
+            <MenuItem value="Anticipo del 20">Pago anticipado del 20%</MenuItem>
           </Select>
         </FormControl>
 

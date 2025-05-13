@@ -12,7 +12,7 @@ function Calculation() {
   const creditosPosSep = creditosMay + 1835
   const creditosPosMay = creditosSep + 1665
 
-  const {selectedCategory, selectedGrade, tuition} = useContext(GradeAndPeriodContext)
+  const {selectedCategory, selectedGrade, tuition, paymentMethod, tenPercent, setTenPercent, totalCredits} = useContext(GradeAndPeriodContext)
 
   let credit = ''
 
@@ -29,6 +29,11 @@ function Calculation() {
       credit = creditosPosSep
     }
    }
+   
+   if (paymentMethod === 'Contado') {
+    setTenPercent(totalCredits * referenciasMayo.creditos)
+   }
+   
 
 
   return (
@@ -37,13 +42,23 @@ function Calculation() {
       <h3 className="calculations-h3">Costos totales estimados</h3>
       <p className="calculations-p">Basados en tus selecciones</p>
       
-      <Typography variant="h6" sx={{ mt: 2 }}>
+      
+      <div className="both-calculations">
+      <Typography variant="h6" sx={{ mt: 2 }} >
         Total Colegiatura: RD$ {tuition.toLocaleString()}
       </Typography>
 
+      <Typography sx={{ mt: 3.1}} variant="caption" style={{textDecoration: 'line-through', color: 'gray'}}>
+        {tuition !== 0 && `RD$ ${tenPercent.toLocaleString()}`}
+      </Typography>
+      </div>
+
+
       <p className="calculations-p-2">
-        Calculado a RD ${credit} por crédito
+        {tuition !== 0 && `Calculado a RD$ ${credit} por crédito`}
       </p>
+
+
 
     </section>
   )
