@@ -9,7 +9,7 @@ import {
   Button,
   Paper,
 } from '@mui/material';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { GradeAndPeriodContext } from '../Context/GradeAndPeriodContext';
 import { referenciasMayo } from '../referencias-may-ago';
 import { referenciasSep } from '../referencias-sep-dic';
@@ -25,7 +25,9 @@ function LandingPage() {
     setTotalCredits,
     setTuition,
     paymentMethod,
-    setPaymentMethod
+    setPaymentMethod,
+    noDiscount,
+    setNoDiscount
   } = useContext(GradeAndPeriodContext);
 
   const posgradoMayo = referenciasMayo.creditos + 1665
@@ -43,17 +45,27 @@ function LandingPage() {
       if (paymentMethod === 'Contado') {
         if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
           setTuition((totalCredits * referenciasMayo.creditos) - ((totalCredits * referenciasMayo.creditos) * 0.10))
+          setNoDiscount(totalCredits * referenciasMayo.creditos)
+        } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
+          setTuition((totalCredits * referenciasSep.creditosSep) - ((totalCredits * referenciasSep.creditosSep) * 0.10))
+          setNoDiscount(totalCredits * referenciasSep.creditosSep)
         }
       }
     }
 
     else if (selectedGrade === 'Posgrado') {
-      if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
-        setTuition(totalCredits * posgradoMayo)
-      } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
-        setTuition(totalCredits * posgradoSep)
+      if (paymentMethod === 'Contado') {
+
+        if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
+          setTuition((totalCredits * posgradoMayo) - ((totalCredits * posgradoMayo) * 0.10))
+          setNoDiscount(totalCredits * posgradoMayo)
+        } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
+          setTuition((totalCredits * posgradoSep) - ((totalCredits * posgradoSep) * 0.10))
+          setNoDiscount(totalCredits * posgradoSep)
+        }
       }
     }
+
   }
 
   return (

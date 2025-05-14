@@ -10,7 +10,7 @@ export default function GradeAndPeriodProvider({ children }) {
   const [totalCredits, setTotalCredits] = useState(0);
   const [tuition, setTuition] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState('')
-  const [tenPercent, setTenPercent] = useState(0)
+  const [noDiscount, setNoDiscount] = useState(0)
 
 
   return (
@@ -25,8 +25,8 @@ export default function GradeAndPeriodProvider({ children }) {
         setTuition,
         setPaymentMethod,
         paymentMethod,
-        tenPercent,
-        setTenPercent
+        noDiscount,
+        setNoDiscount
       }}>
         {children}
       </GradeAndPeriodContext.Provider>

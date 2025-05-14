@@ -12,29 +12,33 @@ function Calculation() {
   const creditosPosSep = creditosMay + 1835
   const creditosPosMay = creditosSep + 1665
 
-  const {selectedCategory, selectedGrade, tuition, paymentMethod, tenPercent, setTenPercent, totalCredits} = useContext(GradeAndPeriodContext)
+  const {selectedCategory, selectedGrade, tuition, paymentMethod, noDiscount} = useContext(GradeAndPeriodContext)
 
   let credit = ''
+  let totalCreditsNoDiscount
 
   if (selectedGrade === 'Grado') {
-    if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
-      credit = creditosMay
-    } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
-      credit = creditosSep
+    if (paymentMethod === 'Contado') {
+      if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
+        credit = creditosMay
+        totalCreditsNoDiscount = noDiscount
+      } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
+        credit = creditosSep
+        totalCreditsNoDiscount = noDiscount
+      }
+
     }
    } else if (selectedGrade === 'Posgrado') {
-    if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
-      credit = creditosPosMay
-    } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
-      credit = creditosPosSep
+    if (paymentMethod === 'Contado') {
+      if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
+        totalCreditsNoDiscount = noDiscount
+        credit = creditosPosMay
+      } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
+        credit = creditosPosSep
+        totalCreditsNoDiscount = noDiscount
+      }
     }
    }
-   
-   if (paymentMethod === 'Contado') {
-    setTenPercent(totalCredits * referenciasMayo.creditos)
-   }
-   
-
 
   return (
     <section className="calculations-section">
@@ -49,7 +53,7 @@ function Calculation() {
       </Typography>
 
       <Typography sx={{ mt: 3.1}} variant="caption" style={{textDecoration: 'line-through', color: 'gray'}}>
-        {tuition !== 0 && `RD$ ${tenPercent.toLocaleString()}`}
+        {tuition !== 0 && `RD$ ${totalCreditsNoDiscount}`}
       </Typography>
       </div>
 
