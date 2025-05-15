@@ -32,8 +32,9 @@ function Calculation() {
   return (
     <section className="calculations-section">
 
-      <h3 className="calculations-h3">Costos totales estimados</h3>
+      <h3 className="calculations-h3">Costos totales de créditos</h3>
       <p className="calculations-p">Basados en tus selecciones</p>
+
       
       
       <div className="both-calculations">

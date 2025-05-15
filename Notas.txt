@@ -1,10 +1,11 @@
 Pendiente: 
 
-- Cambiar el texto (Calculado a RD$ x por credito) solo cuando se calcule la colegiatura
 
 
 
 Done: 
+
+- Cambiar el texto (Calculado a RD$ x por credito) solo cuando se calcule la colegiatura ✅
 
 - Establecer la colegiatura para estudiantes de GRADO con pagos de contado en los periodos ✅
     - Admitido hasta mayo - agosto 2024 ✅
