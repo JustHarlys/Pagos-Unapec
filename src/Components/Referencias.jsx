@@ -21,11 +21,11 @@ function Referencias() {
           <thead>
             <tr>
               <th>Crédito</th>
-              <td>RD$ {creditos}</td>
+              <td>RD$ {creditos.toLocaleString()}</td>
             </tr>
             <tr>
               <th>Rec. Técnologicos</th>
-              <td>RD$ {recursosTec}</td>
+              <td>RD$ {recursosTec.toLocaleString()}</td>
             </tr>
             <tr>
               <th>Lab. Tecnología</th>
@@ -44,11 +44,11 @@ function Referencias() {
           <thead>
             <tr>
               <th>Crédito</th>
-              <td>RD$ {creditosSep}</td>
+              <td>RD$ {creditosSep.toLocaleString()}</td>
             </tr>
             <tr>
               <th>Rec. Técnologicos</th>
-              <td>RD$ {recurstosTecSep}</td>
+              <td>RD$ {recurstosTecSep.toLocaleString()}</td>
             </tr>
             <tr>
               <th>Lab. Tecnología</th>
@@ -69,11 +69,11 @@ function Referencias() {
           <thead>
             <tr>
               <th>Crédito</th>
-              <td>RD$ {creditosPosMay}</td>
+              <td>RD$ {creditosPosMay.toLocaleString()}</td>
             </tr>
             <tr>
               <th>Rec. Técnologicos</th>
-              <td>RD$ {recursosTec}</td>
+              <td>RD$ {recursosTec.toLocaleString()}</td>
             </tr>
             <tr>
               <th>Lab. Tecnología</th>
@@ -92,11 +92,11 @@ function Referencias() {
           <thead>
             <tr>
               <th>Crédito</th>
-              <td>RD$ {creditosPosSep}</td>
+              <td>RD$ {creditosPosSep.toLocaleString()}</td>
             </tr>
             <tr>
               <th>Rec. Técnologicos</th>
-              <td>RD$ {recursosTec}</td>
+              <td>RD$ {recursosTec.toLocaleString()}</td>
             </tr>
             <tr>
               <th>Lab. Tecnología</th>

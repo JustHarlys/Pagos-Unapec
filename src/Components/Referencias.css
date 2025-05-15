@@ -29,7 +29,7 @@ tr:hover {
 .prices-reference {
   color: rgb(9, 9, 11);
   padding: 20px;
-    box-shadow: 0px 0px 5px 3px rgba(173,173,173,0.45);
+  box-shadow: 0px 0px 5px 3px rgba(173,173,173,0.45);
   -webkit-box-shadow: 0px 0px 5px 3px rgba(173,173,173,0.45);
   -moz-box-shadow: 0px 0px 5px 3px rgba(173,173,173,0.45);
   border-radius: 4px;

@@ -2,28 +2,19 @@ import { Typography } from "@mui/material"
 import {GradeAndPeriodContext} from "../Context/GradeAndPeriodContext"
 import { useContext } from "react"
 import './Calculation.css'
-import { referenciasSep } from "../referencias-sep-dic"
-import { referenciasMayo } from "../referencias-may-ago"
 
 function Calculation() {
 
-  const creditosMay = referenciasMayo.creditos
-  const creditosSep = referenciasSep.creditosSep
-  const creditosPosSep = creditosMay + 1835
-  const creditosPosMay = creditosSep + 1665
+  const {selectedCategory, selectedGrade, tuition, paymentMethod, noDiscount, creditReference} = useContext(GradeAndPeriodContext)
 
-  const {selectedCategory, selectedGrade, tuition, paymentMethod, noDiscount} = useContext(GradeAndPeriodContext)
 
-  let credit = ''
   let totalCreditsNoDiscount
 
   if (selectedGrade === 'Grado') {
     if (paymentMethod === 'Contado') {
       if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
-        credit = creditosMay
         totalCreditsNoDiscount = noDiscount
       } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
-        credit = creditosSep
         totalCreditsNoDiscount = noDiscount
       }
 
@@ -32,9 +23,7 @@ function Calculation() {
     if (paymentMethod === 'Contado') {
       if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
         totalCreditsNoDiscount = noDiscount
-        credit = creditosPosMay
       } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
-        credit = creditosPosSep
         totalCreditsNoDiscount = noDiscount
       }
     }
@@ -53,13 +42,13 @@ function Calculation() {
       </Typography>
 
       <Typography sx={{ mt: 3.1}} variant="caption" style={{textDecoration: 'line-through', color: 'gray'}}>
-        {tuition !== 0 && `RD$ ${totalCreditsNoDiscount}`}
+        {tuition !== 0 && `RD$ ${totalCreditsNoDiscount.toLocaleString()}`}
       </Typography>
       </div>
 
 
       <p className="calculations-p-2">
-        {tuition !== 0 && `Calculado a RD$ ${credit} por crédito`}
+        {tuition !== 0 && `Calculado a RD$ ${creditReference.toLocaleString()} por crédito`}
       </p>
 
 

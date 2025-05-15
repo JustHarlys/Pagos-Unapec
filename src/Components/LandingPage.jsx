@@ -26,8 +26,8 @@ function LandingPage() {
     setTuition,
     paymentMethod,
     setPaymentMethod,
-    noDiscount,
-    setNoDiscount
+    setNoDiscount,
+    setCreditReference
   } = useContext(GradeAndPeriodContext);
 
   const posgradoMayo = referenciasMayo.creditos + 1665
@@ -46,9 +46,11 @@ function LandingPage() {
         if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
           setTuition((totalCredits * referenciasMayo.creditos) - ((totalCredits * referenciasMayo.creditos) * 0.10))
           setNoDiscount(totalCredits * referenciasMayo.creditos)
+          setCreditReference(referenciasMayo.creditos)
         } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
           setTuition((totalCredits * referenciasSep.creditosSep) - ((totalCredits * referenciasSep.creditosSep) * 0.10))
           setNoDiscount(totalCredits * referenciasSep.creditosSep)
+          setCreditReference(referenciasSep.creditosSep)
         }
       }
     }
@@ -59,9 +61,11 @@ function LandingPage() {
         if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
           setTuition((totalCredits * posgradoMayo) - ((totalCredits * posgradoMayo) * 0.10))
           setNoDiscount(totalCredits * posgradoMayo)
+          setCreditReference(posgradoMayo)
         } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
           setTuition((totalCredits * posgradoSep) - ((totalCredits * posgradoSep) * 0.10))
           setNoDiscount(totalCredits * posgradoSep)
+          setCreditReference(posgradoSep)
         }
       }
     }
