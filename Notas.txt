@@ -1,5 +1,7 @@
 Pendiente: 
 
+- Crear las 2 formas de pago restante
+- Investigar e implementar una forma de adaptar los laboratorios y poder contabilizarlos
 
 
 
