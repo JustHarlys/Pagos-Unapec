@@ -17,8 +17,8 @@ function Calculation() {
       } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
         totalCreditsNoDiscount = noDiscount
       }
-
     }
+
    } else if (selectedGrade === 'Posgrado') {
     if (paymentMethod === 'Contado') {
       if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
@@ -43,13 +43,13 @@ function Calculation() {
       </Typography>
 
       <Typography sx={{ mt: 3.1}} variant="caption" style={{textDecoration: 'line-through', color: 'gray'}}>
-        {tuition !== 0 && `RD$ ${totalCreditsNoDiscount.toLocaleString()}`}
+        {tuition !== 0 && paymentMethod === 'Contado' && `RD$ ${totalCreditsNoDiscount.toLocaleString()}`}
       </Typography>
       </div>
 
 
       <p className="calculations-p-2">
-        {tuition !== 0 && `Calculado a RD$ ${creditReference.toLocaleString()} por crédito`}
+        {tuition !== 0  && `Calculado a RD$ ${creditReference.toLocaleString()} por crédito`}
       </p>
 
 

@@ -52,6 +52,10 @@ function LandingPage() {
           setNoDiscount(totalCredits * referenciasSep.creditosSep)
           setCreditReference(referenciasSep.creditosSep)
         }
+      } else if (paymentMethod === 'Anticipo del 30') {
+        setTuition(400)
+        setNoDiscount(800)
+        setCreditReference(400)
       }
     }
 
