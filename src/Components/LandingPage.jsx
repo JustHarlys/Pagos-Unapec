@@ -42,20 +42,23 @@ function LandingPage() {
   function handleCreditsMultiplier() {
 
     if (selectedGrade === 'Grado') {
-      if (paymentMethod === 'Contado') {
-        if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
+      if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
+        if (paymentMethod === 'Contado') {
           setTuition((totalCredits * referenciasMayo.creditos) - ((totalCredits * referenciasMayo.creditos) * 0.10))
           setNoDiscount(totalCredits * referenciasMayo.creditos)
           setCreditReference(referenciasMayo.creditos)
-        } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
+        }
+
+        if (paymentMethod === 'Anticipo del 30') {
+          setNoDiscount(totalCredits * referenciasMayo.creditos)
+        }
+
+      } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
+        if (paymentMethod === 'Contado') {
           setTuition((totalCredits * referenciasSep.creditosSep) - ((totalCredits * referenciasSep.creditosSep) * 0.10))
           setNoDiscount(totalCredits * referenciasSep.creditosSep)
           setCreditReference(referenciasSep.creditosSep)
         }
-      } else if (paymentMethod === 'Anticipo del 30') {
-        setTuition(400)
-        setNoDiscount(800)
-        setCreditReference(400)
       }
     }
 
