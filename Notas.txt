@@ -5,7 +5,7 @@ Pendiente:
 - Crear la forma de pago restante
 - Investigar e implementar una forma de adaptar los laboratorios y poder contabilizarlos
 - Responsive Design
-
+- Hacer el 30% para cada uno de los periodos y grados 
 
 
 
