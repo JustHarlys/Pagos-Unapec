@@ -15,7 +15,7 @@ function PaymentMethod30() {
   const {noDiscount} = useContext(GradeAndPeriodContext);
   const frontPayment = noDiscount * thirtyPercent
   const diferredCredits = noDiscount * seventyPercent
-  const admCharges = (diferredCredits * 0.10)
+  const admCharges = (diferredCredits * tenPercent)
   const diferredPayments = (diferredCredits / 3)
   const diferredPaymentsFixed = (diferredCredits / 3).toFixed(2)
 

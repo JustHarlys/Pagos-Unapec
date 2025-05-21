@@ -51,6 +51,8 @@ function LandingPage() {
 
         if (paymentMethod === 'Anticipo del 30') {
           setNoDiscount(totalCredits * referenciasMayo.creditos)
+          setTuition(totalCredits * referenciasMayo.creditos)
+          setCreditReference(referenciasMayo.creditos)
         }
 
       } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
@@ -59,18 +61,36 @@ function LandingPage() {
           setNoDiscount(totalCredits * referenciasSep.creditosSep)
           setCreditReference(referenciasSep.creditosSep)
         }
+
+        if (paymentMethod === 'Anticipo del 30') {
+          setNoDiscount(totalCredits * referenciasSep.creditosSep)
+          setTuition(totalCredits * referenciasSep.creditosSep)
+          setCreditReference(referenciasSep.creditosSep)
+        }
       }
     }
 
     else if (selectedGrade === 'Posgrado') {
-      if (paymentMethod === 'Contado') {
-
-        if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
+      if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
+        if (paymentMethod === 'Contado') {
           setTuition((totalCredits * posgradoMayo) - ((totalCredits * posgradoMayo) * 0.10))
           setNoDiscount(totalCredits * posgradoMayo)
           setCreditReference(posgradoMayo)
-        } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
+
+        } else if (paymentMethod === 'Anticipo del 30') {
+          setTuition(totalCredits * posgradoMayo)
+          setNoDiscount(totalCredits * posgradoMayo)
+          setCreditReference(posgradoMayo)
+        }
+
+
+      } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
+        if (paymentMethod === 'Contado') {
           setTuition((totalCredits * posgradoSep) - ((totalCredits * posgradoSep) * 0.10))
+          setNoDiscount(totalCredits * posgradoSep)
+          setCreditReference(posgradoSep)
+        } else if (paymentMethod === 'Anticipo del 30') {
+          setTuition(totalCredits * posgradoSep)
           setNoDiscount(totalCredits * posgradoSep)
           setCreditReference(posgradoSep)
         }

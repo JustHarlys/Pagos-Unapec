@@ -1,7 +1,7 @@
 Pendiente: 
 
 - Revisar la necesidad de toFixed(2)
-- Total de colegiatura en 30% y 20%
+- Total de colegiatura en 20%
 - Crear la forma de pago restante
 - Investigar e implementar una forma de adaptar los laboratorios y poder contabilizarlos
 - Responsive Design
