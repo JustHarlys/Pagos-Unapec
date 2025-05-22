@@ -13,6 +13,7 @@ import { useContext } from 'react';
 import { GradeAndPeriodContext } from '../Context/GradeAndPeriodContext';
 import { referenciasMayo } from '../referencias-may-ago';
 import { referenciasSep } from '../referencias-sep-dic';
+import { SelectLaboratoriesContext } from '../Context/SelectLaboratories';
 
 function LandingPage() {
 
@@ -30,6 +31,12 @@ function LandingPage() {
     setCreditReference
   } = useContext(GradeAndPeriodContext);
 
+  const {
+    labs,
+    setLabs,
+    handleSelectMenu
+  } = useContext(SelectLaboratoriesContext)
+
   const posgradoMayo = referenciasMayo.creditos + 1665
   const posgradoSep = referenciasMayo.creditos + 1835
 
@@ -37,6 +44,10 @@ function LandingPage() {
 
   function handleOnChange(e) {
     setTotalCredits(parseInt(e.target.value));
+  }
+
+  function handleLabsChange(e) {
+    setLabs(parseInt(e.target.value))
   }
 
   function handleCreditsMultiplier() {
@@ -174,6 +185,27 @@ function LandingPage() {
             <MenuItem value="Anticipo del 20">Pago anticipado del 20%</MenuItem>
           </Select>
         </FormControl>
+
+        <div className='select-laboratory' style={{display: 'flex', alignItems: 'center', gap: 40}}>
+
+
+        <TextField
+          value={labs}
+          onChange={handleLabsChange}
+          label="Laboratorios"
+          type='number'
+          margin='normal'
+          style={{
+            width: 160
+          }}
+          />
+
+          <Button variant='contained' sx={{ p: 1.7, mt: 0.7}} onClick={handleSelectMenu}>
+            Seleccionar labs
+          </Button>
+
+        </div>
+
 
         <TextField
           fullWidth

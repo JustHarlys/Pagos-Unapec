@@ -1,11 +1,8 @@
 Pendiente: 
 
 - Revisar la necesidad de toFixed(2)
-- Total de colegiatura en 20%
-- Crear la forma de pago restante
 - Investigar e implementar una forma de adaptar los laboratorios y poder contabilizarlos
 - Responsive Design
-- Hacer el 30% para cada uno de los periodos y grados 
 
 
 
@@ -21,3 +18,7 @@ Done:
 - Establecer la colegiatura para estudiantes de POSGRADO con pagos de contado en los periodos ✅
     - Admitido hasta mayo - agosto 2024 ✅
     - Admitido a partir de Sept - Dic 2024 ✅
+
+- Hacer el 30% para cada uno de los periodos y grados ✅
+- Crear la forma de pago restante ✅
+- Total de colegiatura en 20% ✅
