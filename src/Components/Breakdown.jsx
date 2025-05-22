@@ -3,6 +3,7 @@ import { GradeAndPeriodContext } from "../Context/GradeAndPeriodContext"
 import { referenciasMayo } from "../referencias-may-ago"
 import PaymentMethod30 from "./PaymentMethod30"
 import './Breakdown.css'
+import PaymentMethod20 from "./PaymentMethod20"
 
 function Breakdown() {
 
@@ -54,7 +55,7 @@ function Breakdown() {
             :
             paymentMethod === 'Anticipo del 20' ?
             <>
-            <h1>Hola</h1>
+            <PaymentMethod20 />
             </>
             :
             null

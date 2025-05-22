@@ -49,7 +49,13 @@ function LandingPage() {
           setCreditReference(referenciasMayo.creditos)
         }
 
-        if (paymentMethod === 'Anticipo del 30') {
+        else if (paymentMethod === 'Anticipo del 30') {
+          setNoDiscount(totalCredits * referenciasMayo.creditos)
+          setTuition(totalCredits * referenciasMayo.creditos)
+          setCreditReference(referenciasMayo.creditos)
+        } 
+
+        else if (paymentMethod === 'Anticipo del 20') {
           setNoDiscount(totalCredits * referenciasMayo.creditos)
           setTuition(totalCredits * referenciasMayo.creditos)
           setCreditReference(referenciasMayo.creditos)
@@ -62,7 +68,13 @@ function LandingPage() {
           setCreditReference(referenciasSep.creditosSep)
         }
 
-        if (paymentMethod === 'Anticipo del 30') {
+        else if (paymentMethod === 'Anticipo del 30') {
+          setNoDiscount(totalCredits * referenciasSep.creditosSep)
+          setTuition(totalCredits * referenciasSep.creditosSep)
+          setCreditReference(referenciasSep.creditosSep)
+        } 
+
+        else if (paymentMethod === 'Anticipo del 20') {
           setNoDiscount(totalCredits * referenciasSep.creditosSep)
           setTuition(totalCredits * referenciasSep.creditosSep)
           setCreditReference(referenciasSep.creditosSep)
@@ -77,7 +89,15 @@ function LandingPage() {
           setNoDiscount(totalCredits * posgradoMayo)
           setCreditReference(posgradoMayo)
 
-        } else if (paymentMethod === 'Anticipo del 30') {
+        } 
+        
+        else if (paymentMethod === 'Anticipo del 30') {
+          setTuition(totalCredits * posgradoMayo)
+          setNoDiscount(totalCredits * posgradoMayo)
+          setCreditReference(posgradoMayo)
+        } 
+
+        else if (paymentMethod === 'Anticipo del 20') {
           setTuition(totalCredits * posgradoMayo)
           setNoDiscount(totalCredits * posgradoMayo)
           setCreditReference(posgradoMayo)
@@ -89,7 +109,15 @@ function LandingPage() {
           setTuition((totalCredits * posgradoSep) - ((totalCredits * posgradoSep) * 0.10))
           setNoDiscount(totalCredits * posgradoSep)
           setCreditReference(posgradoSep)
-        } else if (paymentMethod === 'Anticipo del 30') {
+        } 
+        
+        else if (paymentMethod === 'Anticipo del 30') {
+          setTuition(totalCredits * posgradoSep)
+          setNoDiscount(totalCredits * posgradoSep)
+          setCreditReference(posgradoSep)
+        }
+
+        else if (paymentMethod === 'Anticipo del 20') {
           setTuition(totalCredits * posgradoSep)
           setNoDiscount(totalCredits * posgradoSep)
           setCreditReference(posgradoSep)

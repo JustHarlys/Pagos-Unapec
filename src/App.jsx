@@ -5,7 +5,6 @@ import Referencias from './Components/Referencias'
 import GradeAndPeriodProvider from './Context/GradeAndPeriodContext'
 import Calculation from './Components/Calculation'
 import Breakdown from './Components/Breakdown'
-import Practice from './Components/Practice'
 
 function App() {
 
@@ -25,7 +24,6 @@ function App() {
           </div>
         </div>
 
-      <Practice />
       </GradeAndPeriodProvider>
   )
 }

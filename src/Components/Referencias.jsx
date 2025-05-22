@@ -125,7 +125,6 @@ function Referencias() {
         <div>
         {content}
         </div>
-      
       }
 
  

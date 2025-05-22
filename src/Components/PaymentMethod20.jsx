@@ -1,19 +1,16 @@
+import { referenciasMayo } from "../referencias-may-ago"
 import { useContext } from "react"
 import { GradeAndPeriodContext } from "../Context/GradeAndPeriodContext"
-import { referenciasMayo } from "../referencias-may-ago"
-import './PaymentMethod30.css'
 
-const thirtyPercent = 0.30
-const seventyPercent = 0.70
+const twentyPercent = 0.20
+const eightyPercent = 0.80
 const tenPercent = 0.10
 
-
-
-function PaymentMethod30() {
+function PaymentMethod20() {
 
   const {noDiscount} = useContext(GradeAndPeriodContext);
-  const frontPayment = noDiscount * thirtyPercent
-  const diferredCredits = noDiscount * seventyPercent
+  const frontPayment = noDiscount * twentyPercent
+  const diferredCredits = noDiscount * eightyPercent
   const admCharges = (diferredCredits * tenPercent)
   const diferredPayments = (diferredCredits / 3)
   const diferredPaymentsFixed = (diferredCredits / 3).toFixed(2)
@@ -25,11 +22,11 @@ function PaymentMethod30() {
   let nf = new Intl.NumberFormat('en-US')
 
   return (
-    <table className="paymentMethod30">
+    <table className="paymentMethod20">
         <thead>
         <h5>Pago Inmediato</h5>
           <tr>
-            <th>Anticipo 30%:</th>
+            <th>Anticipo 20%:</th>
             <td>RD$ {frontPayment.toLocaleString()}</td>
           </tr>
           <tr>
@@ -74,4 +71,4 @@ function PaymentMethod30() {
   )
 }
 
-export default PaymentMethod30
+export default PaymentMethod20
