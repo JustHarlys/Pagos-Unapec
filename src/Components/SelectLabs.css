@@ -1,0 +1,12 @@
+.outer-select {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inner-select {
+  max-width: 85%;
+  height: 200px;
+  background-color: gray;
+}
