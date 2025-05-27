@@ -9,7 +9,7 @@ import './Referencias.css'
 function Referencias() {
 
   const {selectedCategory, selectedGrade, techResource} = useContext(GradeAndPeriodContext);
-  const {selectedTotal, selectedLabs} = useContext(SelectLaboratoriesContext)
+  const { selectedLabs} = useContext(SelectLaboratoriesContext)
 
   const { recursosTec, creditos, carnet } = referenciasMayo
   const { recurstosTecSep, creditosSep, carnetSep} = referenciasSep
@@ -127,7 +127,7 @@ function Referencias() {
       
       {selectedCategory === '' || selectedGrade === ''
       ?
-      <p> Para ver las referencias, elija el período y el grado</p>
+      <p> Para ver las referencias, elija el período y el grado.</p>
       :
         <div>
         {content}

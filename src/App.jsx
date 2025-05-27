@@ -17,15 +17,16 @@ function App() {
         <Nav />
         <div className='app'>
 
-          <SelectLaboratoriesProvider>
-            <LandingPage />
-
+         <SelectLaboratoriesProvider>
+          <LandingPage />
           <div className='ref-calc'>
-          <Calculation />
-          <Breakdown />
-          <Referencias /> 
+            <Calculation className="calculation"/>
+            <div className='calculations-ref'>
+              <Breakdown />
+              <Referencias />
+            </div>
           </div>
-          </SelectLaboratoriesProvider>
+        </SelectLaboratoriesProvider>
         </div>
 
       </GradeAndPeriodProvider>

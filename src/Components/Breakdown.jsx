@@ -17,6 +17,9 @@ function Breakdown() {
 
       
         {
+          noDiscount === 0 ?
+          <p style={{marginTop: 20}}>Realice su selección y calcule su colegiatura para ver el desglose.</p>
+          :
             paymentMethod === 'Contado' ? 
             <>
                 {noDiscount !== 0 && <Contado />}

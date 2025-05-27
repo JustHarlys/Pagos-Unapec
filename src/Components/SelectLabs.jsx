@@ -25,7 +25,7 @@ function SelectLabs() {
         type='text'
         placeholder='Filtrar por nombre de asignatura'
         style={{
-          width : 1000
+          width : 600
         }}
         onChange={(e) => setSearchSubject(e.target.value)}
         value={searchSubject}
@@ -51,14 +51,13 @@ function SelectLabs() {
 
         <div className='buttons-labs'>
 
-          <Button variant='contained' sx={{ p: 1.7, mt: 0.7}} onClick={CleanLabSelection}>
+          <Button variant='contained' sx={{ p: 1.7, mt: 0.7}} onClick={handleSelectMenu} >
+              Guardar y Cerrar
+          </Button>
+
+          <Button variant='contained' sx={{ p: 1.7, mt: 0.7}} onClick={CleanLabSelection} style={{backgroundColor: 'red'}}>
             Limpiar
           </Button>
-
-          <Button variant='contained' sx={{ p: 1.7, mt: 0.7}} onClick={handleSelectMenu} style={{backgroundColor: 'red'}}>
-              Cerrar y Guardar
-          </Button>
-
 
         </div>
         

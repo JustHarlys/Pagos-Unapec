@@ -8,6 +8,7 @@ body {
   max-width: 70%;
   margin: 0 auto;
   background-color: rgb(255, 251, 255);
+
 }
 
 .app {
@@ -18,5 +19,15 @@ body {
 .ref-calc {
   display: flex;
   flex-direction: column;
+  gap: 30px;
+  align-items: center; /* Centra horizontalmente todos los hijos */
+}
+
+.ref-calc > .calculation {
+  margin: 0 auto;
+}
+
+.calculations-ref {
+  display: flex;
   gap: 30px;
 }
