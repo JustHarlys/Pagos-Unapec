@@ -1,4 +1,4 @@
-import { useContext, useMemo } from "react"
+import { useContext, useMemo, useEffect } from "react"
 import { Checkbox, FormControlLabel } from "@mui/material"
 import { SelectLaboratoriesContext } from "../Context/SelectLaboratories"
 
@@ -6,9 +6,11 @@ import { SelectLaboratoriesContext } from "../Context/SelectLaboratories"
 
 function SubjectCheckbox({ materia }) {
 
-  const { selectedLabs, toggleLabSelection} = useContext(SelectLaboratoriesContext);
+  const { selectedLabs, toggleLabSelection, searchSubject, setSearchSubject, filteredSubject, setFilteredSubject} = useContext(SelectLaboratoriesContext);
 
   const isChecked = useMemo(() => selectedLabs.has(materia.codigo), [selectedLabs, materia.codigo]);
+
+
 
   return (
     <FormControlLabel 

@@ -36,7 +36,6 @@ function LandingPage() {
     handleChange
   } = useContext(GradeAndPeriodContext);
 
-  console.log(techResource)
 
   const {
     showMenu,

@@ -1,6 +1,7 @@
 import { referenciasMayo } from "../referencias-may-ago"
 import { useContext } from "react"
 import { GradeAndPeriodContext } from "../Context/GradeAndPeriodContext"
+import { SelectLaboratoriesContext } from "../Context/SelectLaboratories"
 
 const twentyPercent = 0.20
 const eightyPercent = 0.80
@@ -8,7 +9,9 @@ const tenPercent = 0.10
 
 function PaymentMethod20() {
 
-  const {noDiscount} = useContext(GradeAndPeriodContext);
+  const {noDiscount, techResource} = useContext(GradeAndPeriodContext);
+  const {selectedTotal} = useContext(SelectLaboratoriesContext)
+
   const frontPayment = noDiscount * twentyPercent
   const diferredCredits = noDiscount * eightyPercent
   const admCharges = (diferredCredits * tenPercent)
@@ -16,13 +19,14 @@ function PaymentMethod20() {
   const diferredPaymentsFixed = (diferredCredits / 3).toFixed(2)
 
   const admChargesPerMonth = (admCharges / 3).toFixed(2)
-  const totalFirstPayment = (frontPayment + (referenciasMayo.labTec * 3) + referenciasMayo.recursosTec + referenciasMayo.carnet).toFixed(2)
+  const totalFirstPayment = (frontPayment + selectedTotal + referenciasMayo.recursosTec + referenciasMayo.carnet).toFixed(2)
   const monthlyTotal = ((admCharges / 3) + diferredPayments).toFixed(2)
-  const fullTermTotal = ((frontPayment + (referenciasMayo.labTec * 3) + referenciasMayo.recursosTec + referenciasMayo.carnet) + (((admCharges / 3) + diferredPayments) * 3))
+  const fullTermTotal = ((frontPayment + selectedTotal + referenciasMayo.recursosTec + referenciasMayo.carnet) + (((admCharges / 3) + diferredPayments) * 3))
   let nf = new Intl.NumberFormat('en-US')
 
   return (
     <table className="paymentMethod20">
+      
         <thead>
         <h5>Pago Inmediato</h5>
           <tr>
@@ -31,12 +35,12 @@ function PaymentMethod20() {
           </tr>
           <tr>
             <th>Lab. Tecnología:</th>
-            <td>RD$ {(referenciasMayo.labTec * 3).toLocaleString()}</td>
+            <td>RD$ {selectedTotal.toLocaleString()}</td>
           </tr>
-          <tr>
+          {techResource && <tr>
             <th>Rec. Tecnológicos:</th>
             <td>RD$ {(referenciasMayo.recursosTec).toLocaleString()}</td>
-          </tr>
+          </tr>}
           <tr>
             <th>Serv. Carnet:</th>
             <td>RD$ {referenciasMayo.carnet}</td>

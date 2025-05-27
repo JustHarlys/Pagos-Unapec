@@ -1,8 +1,7 @@
 Pendiente: 
 
-- Revisar la necesidad de toFixed(2)
 - Responsive Design
-- Poner los Recursos Tec en todos los sitios donde va
+- Filtrar laboratorios por Código o Nombre
 
 
 
@@ -23,3 +22,4 @@ Done:
 - Hacer el 30% para cada uno de los periodos y grados ✅
 - Crear la forma de pago restante ✅
 - Total de colegiatura en 20% ✅
+- Poner los Recursos Tec en todos los sitios donde van ✅

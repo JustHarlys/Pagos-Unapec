@@ -21,19 +21,20 @@
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .inner-select {
   max-height: 400px;
   overflow-y: auto;
   background-color: #f0f0f0;
-  padding: 10px;
 
   border: 1px solid #ccc;
 
   width: 80%;
   display: flex;
   flex-direction: column;
+  min-height: 400px;
 }
 
 #demo-radio-buttons-group-label {
@@ -44,6 +45,21 @@
   display: flex;
   flex-direction: column;
 }
+
+.inner-subject {
+  border-top: 1px solid rgb(192, 191, 191);
+  transition: 0.5s ease all;
+  padding-left: 10px;
+}
+
+.inner-subject:hover {
+  background-color: #ccc;
+}
+
+.inner-subject:first-of-type {
+  border-top: none;
+}
+
 
 .qty-search {
   display: flex;

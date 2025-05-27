@@ -2,16 +2,23 @@ import { referenciasMayo } from "../referencias-may-ago"
 import { referenciasSep } from "../referencias-sep-dic"
 import { useContext } from "react"
 import { GradeAndPeriodContext } from "../Context/GradeAndPeriodContext"
+import { SelectLaboratoriesContext } from "../Context/SelectLaboratories"
+import { materias } from "../data/materias"
 import './Referencias.css'
 
 function Referencias() {
 
   const {selectedCategory, selectedGrade, techResource} = useContext(GradeAndPeriodContext);
+  const {selectedTotal, selectedLabs} = useContext(SelectLaboratoriesContext)
 
-  const { recursosTec, creditos, labTec, carnet } = referenciasMayo
-  const { recurstosTecSep, creditosSep, labtecSep, carnetSep} = referenciasSep
+  const { recursosTec, creditos, carnet } = referenciasMayo
+  const { recurstosTecSep, creditosSep, carnetSep} = referenciasSep
   const creditosPosSep = creditos + 1835
   const creditosPosMay = creditos + 1665
+
+  const firstSelectedCode = Array.from(selectedLabs)[0];
+  const firstSelectedLab = materias.find(m => m.codigo === firstSelectedCode);
+  const firstLabCost = firstSelectedLab?.costo || 0;
   let content = null;
 
   if (selectedGrade === 'Grado') {
@@ -29,7 +36,7 @@ function Referencias() {
             </tr>}
             <tr>
               <th>Lab. Tecnología</th>
-              <td>RD$ {labTec}</td>
+              <td>RD$ {firstLabCost.toLocaleString()}</td>
             </tr>
             <tr>
               <th>Serv. Carnet</th>
@@ -52,7 +59,7 @@ function Referencias() {
             </tr>}
             <tr>
               <th>Lab. Tecnología</th>
-              <td>RD$ {labtecSep}</td>
+              <td>RD$ {firstLabCost.toLocaleString()}</td>
             </tr>
             <tr>
               <th>Serv. Carnet</th>
@@ -77,7 +84,7 @@ function Referencias() {
             </tr>}
             <tr>
               <th>Lab. Tecnología</th>
-              <td>RD$ {labTec}</td>
+              <td>RD$ {firstLabCost.toLocaleString()}</td>
             </tr>
             <tr>
               <th>Serv. Carnet</th>
@@ -100,7 +107,7 @@ function Referencias() {
             </tr>}
             <tr>
               <th>Lab. Tecnología</th>
-              <td>RD$ {labTec}</td>
+              <td>RD$ {firstLabCost.toLocaleString()}</td>
             </tr>
             <tr>
               <th>Serv. Carnet</th>
