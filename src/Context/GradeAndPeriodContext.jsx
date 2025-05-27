@@ -12,7 +12,12 @@ export default function GradeAndPeriodProvider({ children }) {
   const [paymentMethod, setPaymentMethod] = useState('')
   const [noDiscount, setNoDiscount] = useState(0)
   const [creditReference, setCreditReference] = useState(0)
+  const [techResource, setTechResource] = useState(false);
 
+  const handleChange = (e) => {
+    setTechResource(e.target.checked)
+
+  }
 
   return (
       <GradeAndPeriodContext.Provider value={{
@@ -29,7 +34,9 @@ export default function GradeAndPeriodProvider({ children }) {
         noDiscount,
         setNoDiscount,
         creditReference,
-        setCreditReference
+        setCreditReference,
+        techResource,
+        handleChange,
       }}>
         {children}
       </GradeAndPeriodContext.Provider>

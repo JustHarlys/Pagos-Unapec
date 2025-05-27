@@ -6,7 +6,6 @@ import GradeAndPeriodProvider from './Context/GradeAndPeriodContext'
 import Calculation from './Components/Calculation'
 import Breakdown from './Components/Breakdown'
 import SelectLaboratoriesProvider from './Context/SelectLaboratories'
-import SelectLabs from './Components/SelectLabs'
 
 function App() {
 
@@ -20,14 +19,13 @@ function App() {
 
           <SelectLaboratoriesProvider>
             <LandingPage />
-          </SelectLaboratoriesProvider>
 
           <div className='ref-calc'>
           <Calculation />
           <Breakdown />
           <Referencias /> 
-          <SelectLabs />
           </div>
+          </SelectLaboratoriesProvider>
         </div>
 
       </GradeAndPeriodProvider>

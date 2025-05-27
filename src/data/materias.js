@@ -470,7 +470,7 @@ export const materias = [
     costo: 890.00    
   },
   {
-    codigo: 'CNL102',
+    codigo: 'CON102',
     nombre: 'CONTABILIDAD-LAB II',
     costo: 890.00    
   },
@@ -1461,3 +1461,5 @@ export const materias = [
   }
  
 ]
+
+console.log(materias.length)

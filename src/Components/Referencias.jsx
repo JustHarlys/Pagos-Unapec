@@ -6,7 +6,7 @@ import './Referencias.css'
 
 function Referencias() {
 
-  const {selectedCategory, selectedGrade} = useContext(GradeAndPeriodContext);
+  const {selectedCategory, selectedGrade, techResource} = useContext(GradeAndPeriodContext);
 
   const { recursosTec, creditos, labTec, carnet } = referenciasMayo
   const { recurstosTecSep, creditosSep, labtecSep, carnetSep} = referenciasSep
@@ -23,10 +23,10 @@ function Referencias() {
               <th>Crédito</th>
               <td>RD$ {creditos.toLocaleString()}</td>
             </tr>
-            <tr>
+            {techResource && <tr>
               <th>Rec. Técnologicos</th>
-              <td>RD$ {recursosTec.toLocaleString()}</td>
-            </tr>
+              <td>RD$ { recursosTec.toLocaleString()}</td>
+            </tr>}
             <tr>
               <th>Lab. Tecnología</th>
               <td>RD$ {labTec}</td>
@@ -46,10 +46,10 @@ function Referencias() {
               <th>Crédito</th>
               <td>RD$ {creditosSep.toLocaleString()}</td>
             </tr>
-            <tr>
+            {techResource && <tr>
               <th>Rec. Técnologicos</th>
-              <td>RD$ {recurstosTecSep.toLocaleString()}</td>
-            </tr>
+              <td>RD$ { recurstosTecSep.toLocaleString()}</td>
+            </tr>}
             <tr>
               <th>Lab. Tecnología</th>
               <td>RD$ {labtecSep}</td>
@@ -71,10 +71,10 @@ function Referencias() {
               <th>Crédito</th>
               <td>RD$ {creditosPosMay.toLocaleString()}</td>
             </tr>
-            <tr>
+            {techResource && <tr>
               <th>Rec. Técnologicos</th>
-              <td>RD$ {recursosTec.toLocaleString()}</td>
-            </tr>
+              <td>RD$ { recursosTec.toLocaleString()}</td>
+            </tr>}
             <tr>
               <th>Lab. Tecnología</th>
               <td>RD$ {labTec}</td>
@@ -94,10 +94,10 @@ function Referencias() {
               <th>Crédito</th>
               <td>RD$ {creditosPosSep.toLocaleString()}</td>
             </tr>
-            <tr>
+            {techResource && <tr>
               <th>Rec. Técnologicos</th>
               <td>RD$ {recursosTec.toLocaleString()}</td>
-            </tr>
+            </tr>}
             <tr>
               <th>Lab. Tecnología</th>
               <td>RD$ {labTec}</td>

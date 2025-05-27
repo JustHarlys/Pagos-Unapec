@@ -8,12 +8,15 @@ import {
   Typography,
   Button,
   Paper,
+  FormControlLabel,
+  Checkbox,
 } from '@mui/material';
 import { useContext } from 'react';
 import { GradeAndPeriodContext } from '../Context/GradeAndPeriodContext';
 import { referenciasMayo } from '../referencias-may-ago';
 import { referenciasSep } from '../referencias-sep-dic';
 import { SelectLaboratoriesContext } from '../Context/SelectLaboratories';
+import SelectLabs from './SelectLabs';
 
 function LandingPage() {
 
@@ -28,13 +31,17 @@ function LandingPage() {
     paymentMethod,
     setPaymentMethod,
     setNoDiscount,
-    setCreditReference
+    setCreditReference,
+    techResource,
+    handleChange
   } = useContext(GradeAndPeriodContext);
 
+  console.log(techResource)
+
   const {
-    labs,
-    setLabs,
-    handleSelectMenu
+    showMenu,
+    handleSelectMenu,
+    selectedLabs
   } = useContext(SelectLaboratoriesContext)
 
   const posgradoMayo = referenciasMayo.creditos + 1665
@@ -44,10 +51,6 @@ function LandingPage() {
 
   function handleOnChange(e) {
     setTotalCredits(parseInt(e.target.value));
-  }
-
-  function handleLabsChange(e) {
-    setLabs(parseInt(e.target.value))
   }
 
   function handleCreditsMultiplier() {
@@ -161,6 +164,8 @@ function LandingPage() {
           </Select>
         </FormControl>
 
+
+
         <FormControl fullWidth margin="normal">
           <InputLabel>Grado</InputLabel>
           <Select
@@ -190,13 +195,15 @@ function LandingPage() {
 
 
         <TextField
-          value={labs}
-          onChange={handleLabsChange}
+          value={selectedLabs.size}
           label="Laboratorios"
           type='number'
           margin='normal'
           style={{
             width: 160
+          }}
+          InputProps={{
+            readOnly: true
           }}
           />
 
@@ -205,6 +212,12 @@ function LandingPage() {
           </Button>
 
         </div>
+
+
+
+          <FormControl>
+          <FormControlLabel control={<Checkbox />} value={techResource} onChange={handleChange} label="Recursos Tecnologicos"/>
+          </FormControl>
 
 
         <TextField
@@ -216,11 +229,11 @@ function LandingPage() {
           margin="normal"
         />
 
-
-
         <Button variant="contained" onClick={handleCreditsMultiplier} sx={{ mt: 2 }}>
           Calcular colegiatura
         </Button>
+
+        {showMenu && <SelectLabs />}
       </Paper>
     </Container>
   );
