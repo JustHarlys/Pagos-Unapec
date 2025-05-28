@@ -1,4 +1,4 @@
-export const materias = [
+export const materiasPosgrado = [
   {
     codigo: 'PMA401',
     nombre: 'GRAFICA DIGITAL (MODULO I)',

@@ -142,7 +142,7 @@ function LandingPage() {
   }
 
   return (
-    <Container sx={{ mt: 4, width: {xs : '100%', lg : '40%'} }} className='main-container'>
+    <Container sx={{ mt: 4, width: {xs : '100%', lg : '40%', md : '60%'} }} className='main-container'>
       <Paper elevation={3} sx={{ p: 4 }}>
         <Typography variant="h5" gutterBottom>
           Pre-planifica tu colegiatura
@@ -154,6 +154,9 @@ function LandingPage() {
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
             label="Categoría"
+            MenuProps={{
+              disableScrollLock: true
+            }}
           >
             <MenuItem value="Admitido hasta mayo-ago 2024">
               Admitido hasta mayo-ago 2024
@@ -172,6 +175,9 @@ function LandingPage() {
             value={selectedGrade}
             onChange={(e) => setSelectedGrade(e.target.value)}
             label="Grado"
+            MenuProps={{
+              disableScrollLock: true
+            }}
           >
             <MenuItem value="Grado">Grado</MenuItem>
             <MenuItem value="Posgrado">Posgrado</MenuItem>
@@ -184,6 +190,9 @@ function LandingPage() {
           value={paymentMethod}
           onChange={(e) => setPaymentMethod(e.target.value)}
           label="PaymentMethod"
+          MenuProps={{
+              disableScrollLock: true
+          }}
           >
             <MenuItem value="Contado">Pago de contado</MenuItem>
             <MenuItem value="Anticipo del 30">Pago anticipado del 30%</MenuItem>

@@ -1,4 +1,4 @@
-import { useContext, useMemo, useEffect } from "react"
+import { useContext, useMemo } from "react"
 import { Checkbox, FormControlLabel } from "@mui/material"
 import { SelectLaboratoriesContext } from "../Context/SelectLaboratories"
 
@@ -6,7 +6,7 @@ import { SelectLaboratoriesContext } from "../Context/SelectLaboratories"
 
 function SubjectCheckbox({ materia }) {
 
-  const { selectedLabs, toggleLabSelection, searchSubject, setSearchSubject, filteredSubject, setFilteredSubject} = useContext(SelectLaboratoriesContext);
+  const { selectedLabs, toggleLabSelection, } = useContext(SelectLaboratoriesContext);
 
   const isChecked = useMemo(() => selectedLabs.has(materia.codigo), [selectedLabs, materia.codigo]);
 
@@ -16,12 +16,26 @@ function SubjectCheckbox({ materia }) {
     <FormControlLabel 
     control={
       <Checkbox
-      checked={isChecked}
-      onChange={() => toggleLabSelection(materia.codigo)}
+        checked={isChecked}
+        onChange={() => toggleLabSelection(materia.codigo)}
       />
     }
-    label={`${materia.codigo} - ${materia.nombre}  ------   RD$ ${materia.costo.toLocaleString()}.00`}
-    />
+    label={    <div>
+      <strong>{materia.codigo}</strong> - {materia.nombre}<br />
+      <span style={{ color: '#555' }}>
+        RD$ {materia.costo.toLocaleString()}.00
+      </span>
+    </div>}
+    sx={{
+      '& .MuiFormControlLabel-label': {
+        fontSize: {
+          xs: '0.65rem', // para pantallas pequeñas
+          sm: '0.85rem', // un poco más grande en sm+
+          md: '1rem'     // tamaño normal desde md en adelante
+        }
+      }
+    }}
+  />
   )
 }
 

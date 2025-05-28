@@ -7,8 +7,7 @@ body {
   font-family: sans-serif;
   width: 80%;
   margin: 0 auto;
-  background-color: rgb(255, 251, 255);
-
+  transition: 0.5s ease all;
 }
 
 .app {
@@ -21,7 +20,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  align-items: center; /* Centra horizontalmente todos los hijos */
+  align-items: center; 
 }
 
 .ref-calc > .calculation {

@@ -7,9 +7,21 @@ import Calculation from './Components/Calculation'
 import Breakdown from './Components/Breakdown'
 import SelectLaboratoriesProvider from './Context/SelectLaboratories'
 import Footer from './Components/Footer'
+import { useContext } from 'react'
+import { DarkModeContext } from './Context/DarkModeToggleContext'
 
+const body = document.body;
 
 function App() {
+
+  const {darkMode} = useContext(DarkModeContext)
+
+  if (darkMode === false) {
+    body.style.backgroundColor = 'rgb(255, 251, 255)'
+  } else {
+    body.style.backgroundColor = 'rgb(41,45,52)'
+  }
+
 
   return (
     

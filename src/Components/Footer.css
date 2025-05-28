@@ -3,13 +3,13 @@ footer {
     margin-top: 80px;
     margin-bottom: 3px;
     font-size: 0.9rem;
-    color: #666;
+    transition: 0.5s ease all;
 }
 
 @media screen and (max-width: 768px) {
     footer {
         margin-top: 20px;
         font-size: 0.71rem;
-padding: 2px;
-    }
+        padding: 2px;
+        }
 }

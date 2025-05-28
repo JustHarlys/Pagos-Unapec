@@ -6,3 +6,19 @@ nav {
     gap: 60px;
     text-align: center;
 }
+
+.nav > div > i {
+    font-size: 25px;
+    width: 25px;
+    animation: infinite 6s linear logo-spin;
+    cursor: pointer;
+    transition: 0.5s ease all;
+}
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}

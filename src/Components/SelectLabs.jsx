@@ -24,8 +24,11 @@ function SelectLabs() {
         size='small'
         type='text'
         placeholder='Filtrar por nombre de asignatura'
-        style={{
-          width : 600
+        sx={{
+          width: {
+            lg: '600px',
+            xs: '250px'
+          }
         }}
         onChange={(e) => setSearchSubject(e.target.value)}
         value={searchSubject}
