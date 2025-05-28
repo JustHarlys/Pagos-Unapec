@@ -6,6 +6,8 @@ import GradeAndPeriodProvider from './Context/GradeAndPeriodContext'
 import Calculation from './Components/Calculation'
 import Breakdown from './Components/Breakdown'
 import SelectLaboratoriesProvider from './Context/SelectLaboratories'
+import Footer from './Components/Footer'
+
 
 function App() {
 
@@ -27,8 +29,10 @@ function App() {
             </div>
           </div>
         </SelectLaboratoriesProvider>
+
         </div>
 
+        <Footer />
       </GradeAndPeriodProvider>
   )
 }

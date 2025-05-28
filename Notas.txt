@@ -1,15 +1,15 @@
 Pendiente: 
 
-- Responsive Design
-- Filtrar laboratorios por Código o Nombre
-
-
+- Poner laboratorios dependiendo del grado
+- Desarrollar el Dark Mode Toggle
 
 
 Done: 
 
 - Cambiar el texto (Calculado a RD$ x por credito) solo cuando se calcule la colegiatura ✅
 - Investigar e implementar una forma de adaptar los laboratorios y poder contabilizarlos ✅
+- Responsive Design ✅
+- Filtrar laboratorios por Código o Nombre ✅
 
 - Establecer la colegiatura para estudiantes de GRADO con pagos de contado en los periodos ✅
     - Admitido hasta mayo - agosto 2024 ✅

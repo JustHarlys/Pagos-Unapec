@@ -38,8 +38,8 @@ function Calculation() {
       
       
       <div className="both-calculations">
-      <Typography variant="h6" sx={{ mt: 2 }} >
-        Total Colegiatura: RD$ {tuition.toLocaleString()}
+      <Typography variant="h6" sx={{ mt: 2 , fontSize: {xs : '17px'}}} >
+        Total Colegiatura: RD$ {paymentMethod === 'Contado' ? tuition.toLocaleString() : noDiscount.toLocaleString()}
       </Typography>
 
       <Typography sx={{ mt: 3.1}} variant="caption" style={{textDecoration: 'line-through', color: 'gray'}}>

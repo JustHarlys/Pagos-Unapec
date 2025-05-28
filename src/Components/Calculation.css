@@ -27,3 +27,9 @@
   display: flex;
   gap: 2px;
 }
+
+@media screen and (max-width: 768px) {
+  .calculations-section {
+    width: 355px;
+  }
+}

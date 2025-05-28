@@ -5,7 +5,7 @@
 
 body {
   font-family: sans-serif;
-  max-width: 70%;
+  width: 80%;
   margin: 0 auto;
   background-color: rgb(255, 251, 255);
 
@@ -15,6 +15,7 @@ body {
   display: flex;
   align-items: center;
 }
+
 
 .ref-calc {
   display: flex;
@@ -30,4 +31,39 @@ body {
 .calculations-ref {
   display: flex;
   gap: 30px;
+}
+
+.calculations-ref > * {
+  flex: 1;
+}
+
+.select-laboratory {
+  gap: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .app {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+
+  .btn-select-tabs {
+    min-width: 10px;
+  }
+
+  .select-laboratory {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  body {
+    width: 100%;
+  }
+
+  .calculations-ref {
+    flex-direction: column;
+  }
+
+
 }

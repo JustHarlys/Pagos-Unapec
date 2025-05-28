@@ -17,6 +17,7 @@ import { referenciasMayo } from '../referencias-may-ago';
 import { referenciasSep } from '../referencias-sep-dic';
 import { SelectLaboratoriesContext } from '../Context/SelectLaboratories';
 import SelectLabs from './SelectLabs';
+import '../App.css'
 
 function LandingPage() {
 
@@ -141,7 +142,7 @@ function LandingPage() {
   }
 
   return (
-    <Container sx={{ mt: 4, width: '40%' }}>
+    <Container sx={{ mt: 4, width: {xs : '100%', lg : '40%'} }} className='main-container'>
       <Paper elevation={3} sx={{ p: 4 }}>
         <Typography variant="h5" gutterBottom>
           Pre-planifica tu colegiatura
@@ -190,23 +191,27 @@ function LandingPage() {
           </Select>
         </FormControl>
 
-        <div className='select-laboratory' style={{display: 'flex', alignItems: 'center', gap: 40}}>
+        <div className='select-laboratory' style={{display: 'flex', alignItems: 'center'}}>
 
 
         <TextField
-          value={selectedLabs.size}
-          label="Laboratorios"
+          value={selectedLabs.size === 0 ? '' : selectedLabs.size}
+          label={selectedLabs.size === 0 ? '' : "Laboratorios"}
           type='number'
           margin='normal'
-          style={{
-            width: 160
-          }}
+          sx={{width: {
+            xs : '100%',
+            lg : '40%'
+          }}}
           InputProps={{
             readOnly: true
           }}
+          className='lab-textfield'
+          placeholder='Seleccionar Labs'
+          disabled
           />
 
-          <Button variant='contained' sx={{ p: 1.7, mt: 0.7}} onClick={handleSelectMenu}>
+          <Button variant='contained' sx={{ p: 1.7, mt: 0.7, width : {xs : '100%', lg: '40%'}}} onClick={handleSelectMenu} className='btn-select-tabs' size='medium'>
             Seleccionar labs
           </Button>
 
@@ -214,7 +219,7 @@ function LandingPage() {
 
 
 
-          <FormControl>
+          <FormControl sx={{mt : { xs : 2}}}>
           <FormControlLabel control={<Checkbox />} value={techResource} onChange={handleChange} label="Recursos Tecnologicos"/>
           </FormControl>
 
@@ -228,7 +233,7 @@ function LandingPage() {
           margin="normal"
         />
 
-        <Button variant="contained" onClick={handleCreditsMultiplier} sx={{ mt: 2 }}>
+        <Button variant="contained" onClick={handleCreditsMultiplier} sx={{ mt: 2, width : {xs : '100%'}, p: 1.7}}>
           Calcular colegiatura
         </Button>
 

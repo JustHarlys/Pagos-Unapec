@@ -10,34 +10,31 @@ function Breakdown() {
     const {paymentMethod, noDiscount} = useContext(GradeAndPeriodContext);
 
   return (
-    <section className="price-breakdown">
-
-      <h3 className="calculations-h3">Costos totales estimados</h3>
-      <p className="calculations-p">Basados en tus selecciones</p>
-
-      
-        {
-          noDiscount === 0 ?
-          <p style={{marginTop: 20}}>Realice su selección y calcule su colegiatura para ver el desglose.</p>
-          :
+    <>
+{   noDiscount !== 0 && 
+   <section className="price-breakdown">
+        <h3 className="calculations-h3">Costos totales estimados</h3>
+        <p className="calculations-p">Basados en tus selecciones</p> 
+          {
             paymentMethod === 'Contado' ? 
             <>
-                {noDiscount !== 0 && <Contado />}
-            </>
-            :
-            paymentMethod === 'Anticipo del 30' ?
-            <>
-                {noDiscount !== 0 && <PaymentMethod30 />}
-            </>
-            :
-            paymentMethod === 'Anticipo del 20' ?
-            <>
-            {noDiscount !== 0 && <PaymentMethod20 />}
-            </>
-            :
-            null
-        }
-    </section>
+                  {noDiscount !== 0 && <Contado />}
+              </>
+              :
+              paymentMethod === 'Anticipo del 30' ?
+              <>
+                  {noDiscount !== 0 && <PaymentMethod30 />}
+              </>
+              :
+              paymentMethod === 'Anticipo del 20' ?
+              <>
+              {noDiscount !== 0 && <PaymentMethod20 />}
+              </>
+              :
+              null
+            }
+      </section>}
+    </>
   )
 }
 
