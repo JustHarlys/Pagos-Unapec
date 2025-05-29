@@ -7,21 +7,27 @@ nav {
     text-align: center;
 }
 
-.nav > button > i {
+button  {
     font-size: 25px;
     width: 25px;
     animation: infinite 6s linear logo-spin;
     cursor: pointer;
     transition: 0.5s ease all;
+    background: none;
+    border: none;
+  outline: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
+button:focus,
+button:active,
 .toggle-btn:focus,
 .toggle-btn:active {
   outline: none;
   background-color: transparent;
   box-shadow: none;
 }
-
 @keyframes logo-spin {
     from {
         transform: rotate(0deg);
