@@ -11,10 +11,18 @@ function Nav() {
     <nav className='nav'>
         <img src={unapecLogo} alt="Logo de la Universidad APEC" width={80} className='logo-nav'/>
         <h3 className='logo-h3' style={darkMode ? {color: 'white'} : {color : 'black'}}>Planificación de Pagos para estudiantes</h3>
-
-        <div onClick={handleToggle} style={darkMode ? {color: 'white'} : {color : 'black'}}>
-        {darkMode ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
-        </div>
+        <button
+          onClick={handleToggle}
+          className="toggle-btn"
+          style={{
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            color: darkMode ? 'white' : 'black'
+          }}
+        >
+          {darkMode ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
+        </button>
 
     </nav>
   )
