@@ -8,7 +8,7 @@ body {
   font-family: sans-serif;
   width: 80%;
   margin: 0 auto;
-  transition: background-color 0.5s ease, color 0.5s ease all;
+  transition: ease 0.5s all;
 }
 
 .app {
