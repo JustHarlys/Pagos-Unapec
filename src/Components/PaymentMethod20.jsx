@@ -7,11 +7,14 @@ const twentyPercent = 0.20
 const eightyPercent = 0.80
 const tenPercent = 0.10
 
-function PaymentMethod20() {
 
+function PaymentMethod20() {
+  
+  
   const {noDiscount, techResource} = useContext(GradeAndPeriodContext);
   const {selectedTotal} = useContext(SelectLaboratoriesContext)
-
+  
+  const recursosTec = techResource ? referenciasMayo.recursosTec : 0
   const frontPayment = noDiscount * twentyPercent
   const diferredCredits = noDiscount * eightyPercent
   const admCharges = (diferredCredits * tenPercent)
@@ -19,9 +22,9 @@ function PaymentMethod20() {
   const diferredPaymentsFixed = (diferredCredits / 3).toFixed(2)
 
   const admChargesPerMonth = (admCharges / 3).toFixed(2)
-  const totalFirstPayment = (frontPayment + selectedTotal + referenciasMayo.recursosTec + referenciasMayo.carnet).toFixed(2)
+  const totalFirstPayment = (frontPayment + selectedTotal + recursosTec + referenciasMayo.carnet).toFixed(2)
   const monthlyTotal = ((admCharges / 3) + diferredPayments).toFixed(2)
-  const fullTermTotal = ((frontPayment + selectedTotal + referenciasMayo.recursosTec + referenciasMayo.carnet) + (((admCharges / 3) + diferredPayments) * 3))
+  const fullTermTotal = ((frontPayment + selectedTotal + recursosTec + referenciasMayo.carnet) + (((admCharges / 3) + diferredPayments) * 3))
   let nf = new Intl.NumberFormat('en-US')
 
   return (
@@ -39,7 +42,7 @@ function PaymentMethod20() {
           </tr>
           {techResource && <tr>
             <th>Rec. Tecnológicos:</th>
-            <td>RD$ {(referenciasMayo.recursosTec).toLocaleString()}</td>
+            <td>RD$ {(recursosTec).toLocaleString()}</td>
           </tr>}
           <tr>
             <th>Serv. Carnet:</th>

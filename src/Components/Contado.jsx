@@ -9,7 +9,8 @@ function Contado() {
     const {tuition, techResource} = useContext(GradeAndPeriodContext);
     const {selectedTotal} = useContext(SelectLaboratoriesContext)
     
-    const {carnet, recursosTec} = referenciasMayo
+      const recursosTec = techResource ? referenciasMayo.recursosTec : 0
+    const {carnet} = referenciasMayo
     const totalPayment = carnet + selectedTotal + recursosTec + tuition
 
   return (
@@ -21,7 +22,7 @@ function Contado() {
                     </tr>
                     {techResource && <tr>
                         <th>Rec. Tecnológicos</th>
-                        <td>{`RD$ ${referenciasMayo.recursosTec.toLocaleString()}`}</td>
+                        <td>{`RD$ ${recursosTec.toLocaleString()}`}</td>
                     </tr>}
                     <tr>
                         <th>Lab. Tecnología</th>
