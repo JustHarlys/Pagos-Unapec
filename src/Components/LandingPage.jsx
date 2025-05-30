@@ -148,7 +148,7 @@ function LandingPage() {
     <Container sx={{ mt: 4, width: {xs : '100%', lg : '40%', md : '60%'} }} className='main-container'>
       <Paper elevation={3} sx={{ p: 4 }}>
 
-        <div className='question-text' style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 20}}>
+        <div className='question-text' style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 20, cursor: 'pointer'}}>
 
         <Typography variant="h5" gutterBottom>
           Pre-planifica tu colegiatura
