@@ -33,6 +33,7 @@ function App() {
 
          <SelectLaboratoriesProvider>
           <LandingPage />
+          
           <div className='ref-calc'>
             <Calculation className="calculation"/>
             <div className='calculations-ref'>

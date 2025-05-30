@@ -18,6 +18,7 @@ import { referenciasSep } from '../referencias-sep-dic';
 import { SelectLaboratoriesContext } from '../Context/SelectLaboratories';
 import SelectLabs from './SelectLabs';
 import '../App.css'
+import HelpContainer from './HelpContainer';
 
 function LandingPage() {
 
@@ -34,7 +35,9 @@ function LandingPage() {
     setNoDiscount,
     setCreditReference,
     techResource,
-    handleChange
+    handleChange,
+    handleHelpMenu,
+    showHelp
   } = useContext(GradeAndPeriodContext);
 
 
@@ -144,9 +147,17 @@ function LandingPage() {
   return (
     <Container sx={{ mt: 4, width: {xs : '100%', lg : '40%', md : '60%'} }} className='main-container'>
       <Paper elevation={3} sx={{ p: 4 }}>
+
+        <div className='question-text' style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 20}}>
+
         <Typography variant="h5" gutterBottom>
           Pre-planifica tu colegiatura
         </Typography>
+
+        <i className='fa-solid fa-question' onClick={handleHelpMenu}></i>
+        </div>
+
+         {showHelp && <HelpContainer />} 
 
         <FormControl fullWidth margin="normal">
           <InputLabel>Categoría</InputLabel>

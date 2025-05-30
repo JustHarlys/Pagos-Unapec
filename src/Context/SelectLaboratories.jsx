@@ -13,6 +13,7 @@ export default function SelectLaboratoriesProvider({ children }) {
   const [searchSubject, setSearchSubject] = useState('');
   const [filteredSubjects, setFilteredSubjects] = useState([]);
 
+
     useEffect(() => {
         if (selectedGrade === 'Grado' || !selectedGrade) {
             setFilteredSubjects(materias);
