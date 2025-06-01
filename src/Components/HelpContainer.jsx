@@ -26,7 +26,7 @@ function HelpContainer() {
 
                 <div className="overlay-header">
 
-          <p style={{width: 300}}><strong>NOTA: NO DAMOS RESULTADOS RELACIONADOS A BECAS, DEBIDO A LA VARIABILIDAD DE LOS MONTOS.</strong></p>
+          <p style={{width: 300}}><strong>NOTA: ESTA HERRAMIENTA NO DA RESULTADOS RELACIONADOS A BECAS, DEBIDO A LA VARIABILIDAD DE LOS MONTOS.</strong></p>
     
           <Button
             variant="contained"
