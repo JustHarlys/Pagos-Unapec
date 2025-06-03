@@ -13,7 +13,7 @@ function HelpContainer() {
       <div className="overlay-content">
 
 
-        <h2 style={{marginBottom: 20}}>Como funciona esta herramienta</h2>
+        <h2 style={{marginBottom: 20}}>Como funciona esta herramienta (LEER ANTES DE USAR)</h2>
         <ol className="steps">
           <li><strong>Paso 1:</strong> Tener presente a cuál de las 2 categorías pertenece, ya que el costo por crédito varía.</li>
           <li><strong>Paso 2:</strong> Seleccionar el tipo de Grado correspondiente.</li>
