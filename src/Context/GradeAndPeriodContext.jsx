@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import { useState } from "react";
 
 export const GradeAndPeriodContext = createContext();
@@ -22,6 +22,15 @@ export default function GradeAndPeriodProvider({ children }) {
   const handleHelpMenu = () => {
     setShowHelp(prevState => !prevState)
   }
+
+  useEffect(() => {
+    const hasSeenTutorual = localStorage.getItem('hasSeenTutorual');
+
+    if (!hasSeenTutorual) {
+      setShowHelp(true);
+      localStorage.setItem('hasSeenTutorual', 'true');
+    }
+  }, [])
 
   return (
       <GradeAndPeriodContext.Provider value={{
