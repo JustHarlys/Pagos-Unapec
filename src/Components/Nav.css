@@ -11,12 +11,24 @@ nav {
     text-align: center;
 }
 
-.nav > button > i {
+.nav-btns {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav > div >  button > i {
     font-size: 25px;
     width: 30px;
     animation: infinite 6s linear logo-spin;
     cursor: pointer;
     transition: 0.5s ease all;
+}
+
+.fa-github {
+  font-size: 25px;
+  transition: 0.5s ease all;
+  cursor: pointer;
 }
 
 .toggle-btn i {
