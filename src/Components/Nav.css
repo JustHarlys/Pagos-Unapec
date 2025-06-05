@@ -53,3 +53,13 @@ nav {
         transform: rotate(360deg);
     }
 }
+
+@media screen and (max-width: 768px) {
+  nav {
+    gap: 28px;
+  }
+
+  .logo-h3 {
+    font-size: 18px;
+  }
+}
