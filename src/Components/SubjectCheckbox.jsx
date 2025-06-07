@@ -29,9 +29,9 @@ function SubjectCheckbox({ materia }) {
     sx={{
       '& .MuiFormControlLabel-label': {
         fontSize: {
-          xs: '0.65rem', // para pantallas pequeñas
-          sm: '0.85rem', // un poco más grande en sm+
-          md: '1rem'     // tamaño normal desde md en adelante
+          xs: '0.71rem', 
+          sm: '0.85rem', 
+          md: '1rem'     
         }
       }
     }}
