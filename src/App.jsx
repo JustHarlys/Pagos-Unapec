@@ -9,7 +9,7 @@ import SelectLaboratoriesProvider from './Context/SelectLaboratories'
 import Footer from './Components/Footer'
 import { useContext } from 'react'
 import { DarkModeContext } from './Context/DarkModeToggleContext'
-import { Analytics } from "@vercel/analytics"
+import { Analytics } from "@vercel/analytics/react"
 
 const body = document.body;
 
