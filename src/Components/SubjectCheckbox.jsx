@@ -11,7 +11,6 @@ function SubjectCheckbox({ materia }) {
   const isChecked = useMemo(() => selectedLabs.has(materia.codigo), [selectedLabs, materia.codigo]);
 
 
-
   return (
     <FormControlLabel 
     control={
