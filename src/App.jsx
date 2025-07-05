@@ -9,6 +9,7 @@ import SelectLaboratoriesProvider from './Context/SelectLaboratories'
 import Footer from './Components/Footer'
 import { useContext, useEffect } from 'react'
 import { DarkModeContext } from './Context/DarkModeToggleContext'
+import { Analytics } from "@vercel/analytics/react"
 
 const body = document.body;
 
@@ -48,6 +49,7 @@ function App() {
         </div>
 
         <Footer />
+        <Analytics />
       </GradeAndPeriodProvider>
   )
 }
