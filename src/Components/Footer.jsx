@@ -9,8 +9,8 @@ function Footer() {
   return (
     <footer style={darkMode ? {color: 'white'} : {color: '#666'}}>
         © {new Date().getFullYear()} Desarrollado por Harlys Almánzar. Todos los derechos reservados. <br />
-        Para información OFICIAL, consulte el sitio web de <a href="https://unapec.edu.do/costos/" target='_blank' style={{textDecoration: 'none', color: 'blue'}}>UNAPEC</a>
-        
+        Para información OFICIAL, consulte el sitio web de <a href="https://unapec.edu.do/costos/" target='_blank' style={{textDecoration: 'none', color: 'blue'}}>UNAPEC</a> <br />
+        Actualizado al tarifario con fecha del 1ro de Agosto, 2025.
     </footer>
   )
 }

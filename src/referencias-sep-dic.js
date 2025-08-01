@@ -1,5 +1,5 @@
 export const referenciasSep = {
-  recurstosTecSep : 3025.00 ,
-  creditosSep : 2050.00,
-  carnetSep : 370.00,
+  recurstosTecSep : 3625.00 ,
+  creditosSep : 2195.00,
+  carnetSep : 500.00,
 };
