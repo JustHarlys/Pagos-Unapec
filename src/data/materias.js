@@ -1461,5 +1461,3 @@ export const materias = [
   }
  
 ]
-
-console.log(materias.length)
