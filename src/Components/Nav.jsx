@@ -1,33 +1,63 @@
 import unapecLogo from '../assets/image.png'
-import '../Components/Nav.css'
 import { useContext } from 'react'
 import { DarkModeContext } from '../Context/DarkModeToggleContext'
+import { AppBar, Toolbar, IconButton, Typography, Box, Tooltip } from '@mui/material'
 
 function Nav() {
-
   const { darkMode, handleToggle } = useContext(DarkModeContext)
 
   return (
-    <nav className='nav'>
-        <img src={unapecLogo} alt="Logo de la Universidad APEC" width={80} className='logo-nav'/>
-        <h3 className='logo-h3' style={darkMode ? {color: 'white'} : {color : 'black'}}>Planificación de pagos para estudiantes</h3>
-
-        <div className='nav-btns'>
-          <button
-            onClick={handleToggle}
-            className="toggle-btn"
-            style={{
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              color: darkMode ? 'white' : 'black'
+    <AppBar position="sticky" elevation={0}>
+      <Toolbar sx={{ justifyContent: 'space-between', px: { xs: 2, md: 4 }, minHeight: { xs: 56, sm: 60 } }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+          <Box
+            sx={{
+              bgcolor: '#fff',
+              borderRadius: 1.5,
+              px: 1,
+              py: 0.5,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
+          >
+            <img
+              src={unapecLogo}
+              alt="Logo UNAPEC"
+              height={28}
+              style={{ objectFit: 'contain', display: 'block' }}
+            />
+          </Box>
+          <Typography
+            variant="subtitle2"
+            fontWeight={600}
+            sx={{ color: 'rgba(255,255,255,0.92)', display: { xs: 'none', sm: 'block' }, letterSpacing: '0.2px' }}
+          >
+            Estimador de Colegiatura
+          </Typography>
+        </Box>
+
+        <Box sx={{ display: 'flex', gap: 0.5 }}>
+          <Tooltip title={darkMode ? 'Modo claro' : 'Modo oscuro'} placement="bottom">
+            <IconButton onClick={handleToggle} size="medium" sx={{ color: 'rgba(255,255,255,0.85)', '&:hover': { color: '#fff', bgcolor: 'rgba(255,255,255,0.1)' } }}>
+              <i className={darkMode ? 'fa-solid fa-sun' : 'fa-solid fa-moon'} style={{ fontSize: 17 }} />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Ver en GitHub" placement="bottom">
+            <IconButton
+              component="a"
+              href="https://github.com/JustHarlys/Pagos-Unapec"
+              target="_blank"
+              rel="noopener noreferrer"
+              size="medium"
+              sx={{ color: 'rgba(255,255,255,0.85)', '&:hover': { color: '#fff', bgcolor: 'rgba(255,255,255,0.1)' } }}
             >
-            {darkMode ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
-          </button>
-          <a href="https://github.com/JustHarlys/Pagos-Unapec" target='_blank' style={darkMode ? {color : 'white'} : {color: 'black'}}> <i className='fa-brands fa-github'></i> </a>        
-          </div>
-    </nav>
+              <i className="fa-brands fa-github" style={{ fontSize: 17 }} />
+            </IconButton>
+          </Tooltip>
+        </Box>
+      </Toolbar>
+    </AppBar>
   )
 }
 
