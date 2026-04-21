@@ -1,4 +1,8 @@
 import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
   Typography,
   Button,
   TextField,
@@ -11,17 +15,29 @@ import { useContext } from 'react';
 import { SelectLaboratoriesContext } from '../Context/SelectLaboratories';
 
 function SelectLabs() {
-
-  const {searchSubject, selectedTotal, selectedLabs, handleSelectMenu, CleanLabSelection, setSearchSubject} = useContext(SelectLaboratoriesContext)
-
+  const {
+    searchSubject,
+    selectedTotal,
+    selectedLabs,
+    handleSelectMenu,
+    CleanLabSelection,
+    setSearchSubject,
+  } = useContext(SelectLaboratoriesContext)
 
   return (
-    <section className="select-labs">
-      <div className="outer-select">
-        <Typography>
-          Selecciona las materias
-        </Typography>
-
+    <Dialog open fullWidth maxWidth="md" onClose={handleSelectMenu} disableScrollLock>
+      <DialogTitle sx={{ pb: 1 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 1, mb: 1 }}>
+          <Typography variant="h6" fontWeight={600}>Selecciona las materias</Typography>
+          <Box sx={{ display: 'flex', gap: 3 }}>
+            <Typography variant="body2" color="text.secondary">
+              Monto Total: <strong>RD$ {selectedTotal.toLocaleString()}</strong>
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Qty: <strong>{selectedLabs.size}</strong>
+            </Typography>
+          </Box>
+        </Box>
         <TextField
         size='small'
         type='text'
@@ -67,13 +83,19 @@ function SelectLabs() {
               Guardar y Cerrar
           </Button>
 
-          <Button variant='contained' sx={{ p: 1.7, mt: 0.7}} onClick={CleanLabSelection} style={{backgroundColor: 'red'}}>
-            Limpiar
-          </Button>
+      <DialogContent dividers sx={{ p: 0, maxHeight: 400 }}>
+        <SelectOptions />
+      </DialogContent>
 
-        </div>
-        
-    </section>
+      <DialogActions sx={{ px: 3, py: 2, gap: 1 }}>
+        <Button variant="outlined" color="error" onClick={CleanLabSelection}>
+          Limpiar selección
+        </Button>
+        <Button variant="contained" onClick={handleSelectMenu}>
+          Guardar y cerrar
+        </Button>
+      </DialogActions>
+    </Dialog>
   )
 }
 
