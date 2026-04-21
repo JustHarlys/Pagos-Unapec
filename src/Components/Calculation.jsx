@@ -1,60 +1,105 @@
-import { Typography } from "@mui/material"
-import {GradeAndPeriodContext} from "../Context/GradeAndPeriodContext"
+import { Typography, Paper, Box, Chip } from "@mui/material"
+import { GradeAndPeriodContext } from "../Context/GradeAndPeriodContext"
 import { useContext } from "react"
-import './Calculation.css'
 
 function Calculation() {
+  const { tuition, paymentMethod, noDiscount, creditReference } = useContext(GradeAndPeriodContext)
 
-  const {selectedCategory, selectedGrade, tuition, paymentMethod, noDiscount, creditReference} = useContext(GradeAndPeriodContext)
-
-
-  let totalCreditsNoDiscount
-
-  if (selectedGrade === 'Grado') {
-    if (paymentMethod === 'Contado') {
-      if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
-        totalCreditsNoDiscount = noDiscount
-      } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
-        totalCreditsNoDiscount = noDiscount
-      }
-    }
-
-   } else if (selectedGrade === 'Posgrado') {
-    if (paymentMethod === 'Contado') {
-      if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
-        totalCreditsNoDiscount = noDiscount
-      } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
-        totalCreditsNoDiscount = noDiscount
-      }
-    }
-   }
+  const isEmpty = tuition === 0 && noDiscount === 0
 
   return (
-    <section className="calculations-section">
+    <Paper
+      sx={{
+        borderRadius: 3,
+        overflow: 'hidden',
+        borderColor: isEmpty ? 'divider' : 'success.main',
+        borderWidth: isEmpty ? 1 : 1,
+        transition: 'border-color 0.3s ease',
+      }}
+    >
+      <Box
+        sx={{
+          px: 3,
+          py: 2,
+          borderBottom: '1px solid',
+          borderColor: 'divider',
+          bgcolor: (theme) =>
+            isEmpty
+              ? theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : '#FAFBFC'
+              : theme.palette.mode === 'dark' ? 'rgba(5,150,105,0.12)' : 'rgba(5,150,105,0.06)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
+        <Box>
+          <Typography variant="subtitle2" fontWeight={700}>
+            Costos totales de créditos
+          </Typography>
+          <Typography variant="caption" color="text.secondary">
+            Basados en tus selecciones
+          </Typography>
+        </Box>
+        {!isEmpty && (
+          <Chip
+            label="Calculado"
+            size="small"
+            color="success"
+            variant="outlined"
+            sx={{ fontWeight: 600, fontSize: '0.7rem' }}
+          />
+        )}
+      </Box>
 
-      <h3 className="calculations-h3">Costos totales de créditos</h3>
-      <p className="calculations-p">Basados en tus selecciones</p>
+      <Box sx={{ px: 3, py: 3 }}>
+        {isEmpty ? (
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, color: 'text.secondary' }}>
+            <i className="fa-solid fa-calculator" style={{ fontSize: 20, opacity: 0.4 }} />
+            <Typography variant="body2" color="text.secondary">
+              Completa el formulario y presiona "Calcular colegiatura" para ver los resultados.
+            </Typography>
+          </Box>
+        ) : (
+          <>
+            <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 2, flexWrap: 'wrap' }}>
+              <Typography
+                variant="h4"
+                fontWeight={700}
+                color="success.main"
+                sx={{ fontFamily: '"Fira Code", monospace', letterSpacing: '-1px' }}
+              >
+                RD$ {(paymentMethod === 'Contado' ? tuition : noDiscount).toLocaleString()}
+              </Typography>
+              {tuition !== 0 && paymentMethod === 'Contado' && (
+                <Typography
+                  variant="body1"
+                  sx={{ textDecoration: 'line-through', color: 'text.disabled', fontFamily: '"Fira Code", monospace' }}
+                >
+                  RD$ {noDiscount.toLocaleString()}
+                </Typography>
+              )}
+            </Box>
 
-      
-      
-      <div className="both-calculations">
-      <Typography variant="h6" sx={{ mt: 2 , fontSize: {xs : '17px'}}} >
-        Total Colegiatura: RD$ {paymentMethod === 'Contado' ? tuition.toLocaleString() : noDiscount.toLocaleString()}
-      </Typography>
-
-      <Typography sx={{ mt: 3.1}} variant="caption" style={{textDecoration: 'line-through', color: 'gray'}}>
-        {tuition !== 0 && paymentMethod === 'Contado' && `RD$ ${totalCreditsNoDiscount.toLocaleString()}`}
-      </Typography>
-      </div>
-
-
-      <p className="calculations-p-2">
-        {tuition !== 0  && `Calculado a RD$ ${creditReference.toLocaleString()} por crédito`}
-      </p>
-
-
-
-    </section>
+            <Box sx={{ display: 'flex', gap: 1, mt: 1.5, flexWrap: 'wrap' }}>
+              {paymentMethod === 'Contado' && (
+                <Chip
+                  label="10% descuento aplicado"
+                  size="small"
+                  color="success"
+                  sx={{ fontWeight: 600, fontSize: '0.7rem' }}
+                />
+              )}
+              <Chip
+                label={`RD$ ${creditReference.toLocaleString()} / crédito`}
+                size="small"
+                variant="outlined"
+                sx={{ fontWeight: 500, fontSize: '0.7rem' }}
+              />
+            </Box>
+          </>
+        )}
+      </Box>
+    </Paper>
   )
 }
 

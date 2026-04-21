@@ -17,12 +17,14 @@ function SubjectCheckbox({ materia }) {
         onChange={() => toggleLabSelection(materia.codigo)}
       />
     }
-    label={    <div>
-      <strong>{materia.codigo}</strong> - {materia.nombre}<br />
-      <span style={{ color: '#555' }}>
-        RD$ {materia.costo.toLocaleString()}.00
-      </span>
-    </div>}
+    label={
+      <div>
+        <strong>{materia.codigo}</strong> - {materia.nombre}<br />
+        <span style={{ color: 'inherit', opacity: 0.6 }}>
+          RD$ {materia.costo.toLocaleString()}.00
+        </span>
+      </div>
+    }
     sx={{
       '& .MuiFormControlLabel-label': {
         fontSize: {
