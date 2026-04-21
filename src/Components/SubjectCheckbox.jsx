@@ -10,27 +10,29 @@ function SubjectCheckbox({ materia }) {
 
 
   return (
-    <FormControlLabel 
+    <FormControlLabel
     control={
       <Checkbox
         checked={isChecked}
         onChange={() => toggleLabSelection(materia.codigo)}
       />
     }
-    label={
-      <div>
-        <strong>{materia.codigo}</strong> - {materia.nombre}<br />
-        <span style={{ color: 'inherit', opacity: 0.6 }}>
-          RD$ {materia.costo.toLocaleString()}.00
-        </span>
-      </div>
-    }
+    label={<div>
+      <strong>{materia.codigo}</strong> - {materia.nombre}<br />
+      <span style={{ color: '#555' }}>
+        RD$ {materia.costo.toLocaleString()}.00
+      </span>
+    </div>}
     sx={{
+      width: '100%',
+      margin: 0,
+      padding: '6px 10px 6px 0',
       '& .MuiFormControlLabel-label': {
+        width: '100%',
         fontSize: {
-          xs: '0.71rem', 
-          sm: '0.85rem', 
-          md: '1rem'     
+          xs: '0.71rem',
+          sm: '0.85rem',
+          md: '1rem'
         }
       }
     }}
