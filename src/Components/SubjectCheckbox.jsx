@@ -2,8 +2,6 @@ import { useContext, useMemo } from "react"
 import { Checkbox, FormControlLabel } from "@mui/material"
 import { SelectLaboratoriesContext } from "../Context/SelectLaboratories"
 
-
-
 function SubjectCheckbox({ materia }) {
 
   const { selectedLabs, toggleLabSelection, } = useContext(SelectLaboratoriesContext);

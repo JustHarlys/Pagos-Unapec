@@ -25,8 +25,8 @@ function Nav() {
             >
             {darkMode ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
           </button>
-          <a href="https://github.com/JustHarlys/Pagos-Unapec" target='_blank' style={darkMode ? {color : 'white'} : {color: 'black'}}> <i className='fa-brands fa-github'></i> </a>
-        </div>
+          <a href="https://github.com/JustHarlys/Pagos-Unapec" target='_blank' style={darkMode ? {color : 'white'} : {color: 'black'}}> <i className='fa-brands fa-github'></i> </a>        
+          </div>
     </nav>
   )
 }
