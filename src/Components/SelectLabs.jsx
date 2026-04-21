@@ -2,6 +2,8 @@ import {
   Typography,
   Button,
   TextField,
+  InputAdornment,
+  IconButton,
 } from '@mui/material';
 import './SelectLabs.css'
 import SelectOptions from './SelectOptions';
@@ -23,7 +25,7 @@ function SelectLabs() {
         <TextField
         size='small'
         type='text'
-        placeholder='Filtrar por nombre de asignatura'
+        placeholder='Filtrar por nombre o código'
         sx={{
           width: {
             lg: '600px',
@@ -32,9 +34,16 @@ function SelectLabs() {
         }}
         onChange={(e) => setSearchSubject(e.target.value)}
         value={searchSubject}
-        >
-
-        </TextField>
+        InputProps={{
+          endAdornment: searchSubject && (
+            <InputAdornment position="end">
+              <IconButton size="small" onClick={() => setSearchSubject('')}>
+                ✕
+              </IconButton>
+            </InputAdornment>
+          )
+        }}
+        />
 
         <div className='qty-search'> 
         <Typography>
