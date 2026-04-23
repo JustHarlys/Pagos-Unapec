@@ -19,8 +19,10 @@ function SelectOptions() {
     const baseData = !selectedGrade || selectedGrade === 'Grado' ? materias : materiasPosgrado;
 
     if (searchSubject.trim() !== '') {
+      const query = searchSubject.toLowerCase();
       const res = baseData.filter((materia) =>
-        materia.nombre.toLowerCase().startsWith(searchSubject.toLowerCase())
+        materia.nombre.toLowerCase().includes(query) ||
+        materia.codigo.toLowerCase().includes(query)
       );
       setFilteredSubjects(res);
     } else {

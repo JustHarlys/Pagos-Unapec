@@ -1,49 +1,70 @@
-import './HelpContainer.css'
-import { useContext } from 'react';
-import { GradeAndPeriodContext } from '../Context/GradeAndPeriodContext';
-import { Button } from '@mui/material';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Typography,
+  Button,
+  Box,
+} from '@mui/material'
+import { useContext } from 'react'
+import { GradeAndPeriodContext } from '../Context/GradeAndPeriodContext'
 
+const steps = [
+  'Tener presente a cuál de las 2 categorías pertenece, ya que el costo por crédito varía.',
+  'Seleccionar el tipo de Grado correspondiente.',
+  'Seleccionar uno de los 3 métodos de pago brindados por la universidad. Puede ver cómo varían los montos con solo cambiar la modalidad una vez hecho el cálculo.',
+  'Hay asignaturas que agregan un monto extra por Laboratorio. Debe seleccionar cuáles en el botón "Seleccionar Labs", donde puede verificar todas las asignaturas con este costo adicional.',
+  'Si su carrera requiere recursos de tecnología (ISO, ISC, etc.) marque la casilla de Recursos Tecnológicos.',
+  'Debe saber con exactitud la cantidad de créditos preseleccionados. Vaya a BANNER → Inscripción, horario y planificación → Ver información de inscripción, seleccione su periodo y vea Inscritas: N.',
+  'Presione Calcular colegiatura para obtener el total del cuatrimestre. Una vez calculado, puede cambiar el método de pago para comparar opciones.',
+]
 
 function HelpContainer() {
-
-    const {handleHelpMenu} = useContext(GradeAndPeriodContext)
+  const { handleHelpMenu } = useContext(GradeAndPeriodContext)
 
   return (
-   <div className="overlay">
-      <div className="overlay-content">
+    <Dialog open fullWidth maxWidth="sm" onClose={handleHelpMenu} disableScrollLock>
+      <DialogTitle>
+        <Typography variant="h6" fontWeight={600}>
+          Cómo funciona esta herramienta
+        </Typography>
+        <Typography variant="caption" color="error.main" fontWeight={700}>
+          LEER ANTES DE USAR
+        </Typography>
+      </DialogTitle>
 
-
-        <h2 style={{marginBottom: 20}}>Como funciona esta herramienta (LEER ANTES DE USAR)</h2>
-        <ol className="steps">
-          <li><strong>Paso 1:</strong> Tener presente a cuál de las 2 categorías pertenece, ya que el costo por crédito varía.</li>
-          <li><strong>Paso 2:</strong> Seleccionar el tipo de Grado correspondiente.</li>
-          <li><strong>Paso 3:</strong> Seleccionar uno de los 3 métodos de pagos brindados por la universidad, puede ver como varían los montos una vez hecho el cálculo con solo cambiar la modalidad de pago.</li>
-          <li><strong>Paso 4:</strong> Hay asignaturas que agregan un monto extra por Laboratorio, debe seleccionar cuales en el botón que dice "Seleccionar Labs", ahí puede verificar todas las asignaturas que llevan este costo agregado.</li>
-          <li><strong>Paso 5:</strong> Si su carrera requiere de recursos de tecnología (ISO, ISC, etc...) marque la casilla de Recursos Tecnologicos.</li>
-          <li><strong>Paso 6:</strong> Debe saber con exactitud la cantidad de créditos que preseleccionó para que el cálculo sea correcto. Vaya a BANNER {'>'} Inscripción, horario y planificación {'>'} Ver información de inscripción, seleccione su periodo y puede ver <strong>Inscritas: N</strong></li>
-          <li><strong>Paso 7:</strong> Presione calcular colegiatura y esto dará como resultado cuánto pagará en el cuatrimestre entrante, una vez calculado puede cambiar el método de pago para ver cuanto pagaría y cuál sería la diferencia en cada uno de ellos.</li>   
+      <DialogContent dividers>
+        <ol style={{ paddingLeft: '1.5rem', margin: 0 }}>
+          {steps.map((step, i) => (
+            <li key={i} style={{ marginBottom: '0.8rem', lineHeight: 1.6 }}>
+              <strong>Paso {i + 1}:</strong> {step}
+            </li>
+          ))}
         </ol>
 
-                <div className="overlay-header">
+        <Box
+          sx={{
+            mt: 2,
+            p: 1.5,
+            borderRadius: 1,
+            bgcolor: 'warning.main',
+            opacity: 0.9,
+          }}
+        >
+          <Typography variant="caption" fontWeight={700} color="warning.contrastText">
+            NOTA: ESTA HERRAMIENTA NO DA RESULTADOS RELACIONADOS A BECAS, DEBIDO A LA VARIABILIDAD DE LOS MONTOS.
+          </Typography>
+        </Box>
+      </DialogContent>
 
-          <p style={{width: 300, fontSize: 12}}><strong>NOTA: ESTA HERRAMIENTA NO DA RESULTADOS RELACIONADOS A BECAS, DEBIDO A LA VARIABILIDAD DE LOS MONTOS.</strong></p>
-          
-          <Button
-            variant="contained"
-            color="error"
-            size="small"
-            onClick={handleHelpMenu}
-          >
-            Salir
-          </Button>
-        </div>
-
-        
-      </div>
-
-      
-    </div>
-  );
+      <DialogActions sx={{ px: 3, py: 2 }}>
+        <Button variant="contained" color="error" onClick={handleHelpMenu}>
+          Cerrar
+        </Button>
+      </DialogActions>
+    </Dialog>
+  )
 }
 
 export default HelpContainer
