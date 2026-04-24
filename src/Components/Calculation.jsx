@@ -50,7 +50,6 @@ function Calculation() {
           />
         )}
       </Box>
-
       <Box sx={{ px: 3, py: 3 }}>
         {isEmpty ? (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, color: 'text.secondary' }}>
