@@ -43,59 +43,37 @@ function LandingPage() {
 
   const { showMenu, handleSelectMenu, selectedLabs } = useContext(SelectLaboratoriesContext);
 
-  const posgradoMayo = referenciasMayo.creditos + 1665;
-  const posgradoSep = referenciasMayo.creditos + 1835;
+  const creditoPosgrado = 4460
 
   function handleOnChange(e) {
     setTotalCredits(parseInt(e.target.value));
   }
 
   function handleCreditsMultiplier() {
+    let costoCredito = 0
+
     if (selectedGrade === 'Grado') {
       if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
-        if (paymentMethod === 'Contado') {
-          setTuition((totalCredits * referenciasMayo.creditos) - ((totalCredits * referenciasMayo.creditos) * 0.10));
-          setNoDiscount(totalCredits * referenciasMayo.creditos);
-          setCreditReference(referenciasMayo.creditos);
-        } else {
-          setNoDiscount(totalCredits * referenciasMayo.creditos);
-          setTuition(totalCredits * referenciasMayo.creditos);
-          setCreditReference(referenciasMayo.creditos);
-        }
-      } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
-        if (paymentMethod === 'Contado') {
-          setTuition((totalCredits * referenciasSep.creditosSep) - ((totalCredits * referenciasSep.creditosSep) * 0.10));
-          setNoDiscount(totalCredits * referenciasSep.creditosSep);
-          setCreditReference(referenciasSep.creditosSep);
-        } else {
-          setNoDiscount(totalCredits * referenciasSep.creditosSep);
-          setTuition(totalCredits * referenciasSep.creditosSep);
-          setCreditReference(referenciasSep.creditosSep);
-        }
+        costoCredito = referenciasMayo.creditos
+      } else if (
+        selectedCategory === 'Admitido a partir de sept-dic 2024'
+      ) {
+        costoCredito = referenciasSep.creditosSep
       }
     } else if (selectedGrade === 'Posgrado') {
-      if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
-        if (paymentMethod === 'Contado') {
-          setTuition((totalCredits * posgradoMayo) - ((totalCredits * posgradoMayo) * 0.10));
-          setNoDiscount(totalCredits * posgradoMayo);
-          setCreditReference(posgradoMayo);
-        } else {
-          setTuition(totalCredits * posgradoMayo);
-          setNoDiscount(totalCredits * posgradoMayo);
-          setCreditReference(posgradoMayo);
-        }
-      } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
-        if (paymentMethod === 'Contado') {
-          setTuition((totalCredits * posgradoSep) - ((totalCredits * posgradoSep) * 0.10));
-          setNoDiscount(totalCredits * posgradoSep);
-          setCreditReference(posgradoSep);
-        } else {
-          setTuition(totalCredits * posgradoSep);
-          setNoDiscount(totalCredits * posgradoSep);
-          setCreditReference(posgradoSep);
-        }
-      }
+      costoCredito = 4460
     }
+
+    const totalSinDescuento = totalCredits * costoCredito
+
+    const totalFinal =
+      paymentMethod === 'Contado'
+        ? totalSinDescuento * 0.90
+        : totalSinDescuento
+
+    setNoDiscount(totalSinDescuento)
+    setTuition(totalFinal)
+    setCreditReference(costoCredito)
   }
 
   return (

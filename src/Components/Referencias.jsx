@@ -20,8 +20,7 @@ function Referencias() {
 
   const { recursosTec, creditos, carnet } = referenciasMayo
   const { recurstosTecSep, creditosSep, carnetSep } = referenciasSep
-  const creditosPosSep = creditos + 1835
-  const creditosPosMay = creditos + 1665
+  const creditoPosgrado = 4460
 
   const firstSelectedCode = Array.from(selectedLabs)[0]
   const firstSelectedLab = materias.find(m => m.codigo === firstSelectedCode)
@@ -48,17 +47,21 @@ function Referencias() {
   } else if (selectedGrade === 'Posgrado') {
     if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
       rows = [
-        { label: 'Crédito', value: creditosPosMay },
-        ...(techResource ? [{ label: 'Rec. Tecnológicos', value: recursosTec }] : []),
+        { label: 'Crédito', value: creditoPosgrado },
+        ...(techResource
+          ? [{ label: 'Rec. Tecnológicos', value: recursosTec }]
+          : []),
         { label: 'Lab. Tecnología', value: firstLabCost },
         { label: 'Serv. Carnet', value: carnet },
       ]
     } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
       rows = [
-        { label: 'Crédito', value: creditosPosSep },
-        ...(techResource ? [{ label: 'Rec. Tecnológicos', value: recursosTec }] : []),
+        { label: 'Crédito', value: creditoPosgrado },
+        ...(techResource
+          ? [{ label: 'Rec. Tecnológicos', value: recurstosTecSep }]
+          : []),
         { label: 'Lab. Tecnología', value: firstLabCost },
-        { label: 'Serv. Carnet', value: carnet },
+        { label: 'Serv. Carnet', value: carnetSep },
       ]
     }
   }
