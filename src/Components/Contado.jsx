@@ -5,18 +5,57 @@ import { referenciasMayo } from "../referencias-may-ago"
 import { Table, TableBody, TableRow, TableCell, Divider, Typography } from "@mui/material"
 
 function Contado() {
-  const { tuition, techResource } = useContext(GradeAndPeriodContext)
+  const {
+    tuition,
+    techResource,
+    trabajoFinal,
+    regularCreditsSubtotal,
+    finalProjectSubtotal,
+  } = useContext(GradeAndPeriodContext)
+
   const { selectedTotal } = useContext(SelectLaboratoriesContext)
 
   const recursosTec = techResource ? referenciasMayo.recursosTec : 0
   const { carnet } = referenciasMayo
+  const regularCreditsWithDiscount = regularCreditsSubtotal * 0.90
+  const finalProjectWithDiscount = finalProjectSubtotal * 0.90
+
   const totalPayment = carnet + selectedTotal + recursosTec + tuition
 
   const rows = [
-    { label: 'Créditos', value: tuition },
-    ...(techResource ? [{ label: 'Rec. Tecnológicos', value: recursosTec }] : []),
-    { label: 'Lab. Tecnología', value: selectedTotal },
-    { label: 'Serv. Carnet', value: carnet },
+    ...(regularCreditsSubtotal > 0
+      ? [{
+          label: 'Créditos regulares',
+          value: regularCreditsWithDiscount,
+        }]
+      : []),
+
+    ...(finalProjectSubtotal > 0
+      ? [{
+          label:
+            trabajoFinal === 'MON400'
+              ? 'Monográfico (6 créditos)'
+              : 'Tesis (6 créditos)',
+          value: finalProjectWithDiscount,
+        }]
+      : []),
+
+    ...(techResource
+      ? [{
+          label: 'Rec. Tecnológicos',
+          value: recursosTec,
+        }]
+      : []),
+
+    {
+      label: 'Lab. Tecnología',
+      value: selectedTotal,
+    },
+
+    {
+      label: 'Serv. Carnet',
+      value: carnet,
+    },
   ]
 
   return (

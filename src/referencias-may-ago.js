@@ -1,5 +1,5 @@
 export const referenciasMayo = {
-  recursosTec : 3625,
-  creditos : 2095,
-  carnet : 500.00,
+  recursosTec : 3990.00,
+  creditos : 2415.00,
+  carnet : 550.00,
 };

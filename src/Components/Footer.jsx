@@ -20,7 +20,7 @@ function Footer() {
               © {new Date().getFullYear()} Desarrollado por Harlys Almánzar
             </Typography>
             <Typography variant="caption" color="text.disabled" display="block">
-              Actualizado al tarifario con fecha del 1ro de Agosto, 2025
+              Actualizado al tarifario con fecha del 1ro de Agosto, 2026
             </Typography>
           </Box>
           <Typography variant="caption" color="text.secondary">
