@@ -3,7 +3,13 @@ import { GradeAndPeriodContext } from "../Context/GradeAndPeriodContext"
 import { useContext } from "react"
 
 function Calculation() {
-  const { tuition, paymentMethod, noDiscount, creditReference } = useContext(GradeAndPeriodContext)
+  const {
+    tuition,
+    paymentMethod,
+    noDiscount,
+    creditReference,
+    trabajoFinal,
+  } = useContext(GradeAndPeriodContext)
 
   const isEmpty = tuition === 0 && noDiscount === 0
 
@@ -88,12 +94,21 @@ function Calculation() {
                   sx={{ fontWeight: 600, fontSize: '0.7rem' }}
                 />
               )}
+            <Chip
+              label={`RD$ ${creditReference.toLocaleString()} / crédito regular`}
+              size="small"
+              variant="outlined"
+              sx={{ fontWeight: 500, fontSize: '0.7rem' }}
+            />
+
+            {trabajoFinal && (
               <Chip
-                label={`RD$ ${creditReference.toLocaleString()} / crédito`}
+                label={`RD$ 4,725 / crédito ${trabajoFinal}`}
                 size="small"
                 variant="outlined"
                 sx={{ fontWeight: 500, fontSize: '0.7rem' }}
               />
+            )}
             </Box>
           </>
         )}

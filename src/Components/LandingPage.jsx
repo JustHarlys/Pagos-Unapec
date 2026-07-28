@@ -39,42 +39,65 @@ function LandingPage() {
     handleChange,
     handleHelpMenu,
     showHelp,
+    trabajoFinal,
+    setTrabajoFinal,
+    setRegularCreditsSubtotal,
+    setFinalProjectSubtotal,
   } = useContext(GradeAndPeriodContext);
 
   const { showMenu, handleSelectMenu, selectedLabs } = useContext(SelectLaboratoriesContext);
 
   const creditoPosgrado = 4460
+  const CREDITO_TRABAJO_FINAL = 4725
+  const CREDITOS_TRABAJO_FINAL = 6
 
   function handleOnChange(e) {
     setTotalCredits(parseInt(e.target.value));
   }
 
-  function handleCreditsMultiplier() {
-    let costoCredito = 0
+function handleCreditsMultiplier() {
+  let costoCreditoRegular = 0
 
-    if (selectedGrade === 'Grado') {
-      if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
-        costoCredito = referenciasMayo.creditos
-      } else if (
-        selectedCategory === 'Admitido a partir de sept-dic 2024'
-      ) {
-        costoCredito = referenciasSep.creditosSep
-      }
-    } else if (selectedGrade === 'Posgrado') {
-      costoCredito = 4460
+  if (selectedGrade === 'Grado') {
+    if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
+      costoCreditoRegular = referenciasMayo.creditos
+    } else if (
+      selectedCategory === 'Admitido a partir de sept-dic 2024'
+    ) {
+      costoCreditoRegular = referenciasSep.creditosSep
     }
-
-    const totalSinDescuento = totalCredits * costoCredito
-
-    const totalFinal =
-      paymentMethod === 'Contado'
-        ? totalSinDescuento * 0.90
-        : totalSinDescuento
-
-    setNoDiscount(totalSinDescuento)
-    setTuition(totalFinal)
-    setCreditReference(costoCredito)
+  } else if (selectedGrade === 'Posgrado') {
+    costoCreditoRegular = creditoPosgrado
   }
+
+  const creditosRegulares = Number(totalCredits) || 0
+
+  const subtotalCreditosRegulares =
+    creditosRegulares * costoCreditoRegular
+
+  const cursaTrabajoFinal =
+    selectedGrade === 'Grado' &&
+    (trabajoFinal === 'MON400' || trabajoFinal === 'TES500')
+
+  const subtotalTrabajoFinal = cursaTrabajoFinal
+    ? CREDITOS_TRABAJO_FINAL * CREDITO_TRABAJO_FINAL
+    : 0
+
+  const totalSinDescuento =
+    subtotalCreditosRegulares + subtotalTrabajoFinal
+
+  const totalFinal =
+    paymentMethod === 'Contado'
+      ? totalSinDescuento * 0.90
+      : totalSinDescuento
+
+  setRegularCreditsSubtotal(subtotalCreditosRegulares)
+  setFinalProjectSubtotal(subtotalTrabajoFinal)
+
+  setNoDiscount(totalSinDescuento)
+  setTuition(totalFinal)
+  setCreditReference(costoCreditoRegular)
+}
 
   return (
     <Paper sx={{ borderRadius: 3, overflow: 'hidden' }}>
@@ -129,16 +152,59 @@ function LandingPage() {
           <InputLabel>Nivel de grado</InputLabel>
           <Select
             value={selectedGrade}
-            onChange={(e) => setSelectedGrade(e.target.value)}
+            onChange={(e) => {
+              const gradoSeleccionado = e.target.value
+
+              setSelectedGrade(gradoSeleccionado)
+
+              if (gradoSeleccionado !== 'Grado') {
+                setTrabajoFinal('')
+              }
+            }}
             label="Nivel de grado"
             MenuProps={{ disableScrollLock: true }}
           >
             <MenuItem value="Grado">Grado</MenuItem>
             <MenuItem value="Posgrado">Posgrado</MenuItem>
           </Select>
+
+        {selectedGrade === 'Grado' && (
+          <FormControl fullWidth margin="normal" size="small">
+            <InputLabel>Trabajo Final de Grado</InputLabel>
+
+            <Select
+              value={trabajoFinal}
+              onChange={(e) => setTrabajoFinal(e.target.value)}
+              label="Trabajo Final de Grado"
+              MenuProps={{ disableScrollLock: true }}
+            >
+              <MenuItem value="">
+                No estoy cursándolo
+              </MenuItem>
+
+              <MenuItem value="MON400">
+                Monográfico — MON400
+              </MenuItem>
+
+              <MenuItem value="TES500">
+                Tesis — TES500
+              </MenuItem>
+            </Select>
+
+            {trabajoFinal && (
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                sx={{ mt: 0.75, ml: 1.75 }}
+              >
+                Se agregarán automáticamente 6 créditos a RD$4,725 cada uno.
+              </Typography>
+            )}
+          </FormControl>
+        )}
         </FormControl>
 
-        <Divider sx={{ my: 2.5 }} />
+        <Divider sx={{ my: 1.5 }} />
 
         <Typography variant="caption" fontWeight={600} color="text.secondary" sx={{ textTransform: 'uppercase', letterSpacing: '0.6px' }}>
           Créditos y servicios
@@ -146,13 +212,18 @@ function LandingPage() {
 
         <TextField
           fullWidth
-          label="Total de créditos"
+          label={trabajoFinal ? 'Créditos adicionales' : 'Total de créditos'}
           type="number"
           value={totalCredits}
           onChange={handleOnChange}
           margin="normal"
           size="small"
-          inputProps={{ min: 1 }}
+          inputProps={{ min: 0 }}
+          helperText={
+            trabajoFinal
+              ? 'No incluyas los 6 créditos de Tesis o Monográfico; se agregan automáticamente.'
+              : 'Introduce los créditos que cursarás durante el período.'
+          }
         />
 
         <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'stretch', mt: 1, mb: 0.5, flexDirection: { xs: 'column', sm: 'row' } }}>

@@ -14,6 +14,9 @@ export default function GradeAndPeriodProvider({ children }) {
   const [creditReference, setCreditReference] = useState(0)
   const [techResource, setTechResource] = useState(false);
   const [showHelp, setShowHelp] = useState(false)
+  const [trabajoFinal, setTrabajoFinal] = useState('')
+  const [regularCreditsSubtotal, setRegularCreditsSubtotal] = useState(0)
+  const [finalProjectSubtotal, setFinalProjectSubtotal] = useState(0)
 
   const handleChange = (e) => {
     setTechResource(e.target.checked)
@@ -51,7 +54,13 @@ export default function GradeAndPeriodProvider({ children }) {
         techResource,
         handleChange,
         showHelp,
-        handleHelpMenu
+        handleHelpMenu,
+        trabajoFinal,
+        setTrabajoFinal,
+        regularCreditsSubtotal,
+        setRegularCreditsSubtotal,
+        finalProjectSubtotal,
+        setFinalProjectSubtotal
       }}>
         {children}
       </GradeAndPeriodContext.Provider>

@@ -15,12 +15,19 @@ import {
 } from "@mui/material"
 
 function Referencias() {
-  const { selectedCategory, selectedGrade, techResource } = useContext(GradeAndPeriodContext)
+
+  const {
+    selectedCategory,
+    selectedGrade,
+    techResource,
+    trabajoFinal,
+  } = useContext(GradeAndPeriodContext)
   const { selectedLabs } = useContext(SelectLaboratoriesContext)
 
   const { recursosTec, creditos, carnet } = referenciasMayo
   const { recurstosTecSep, creditosSep, carnetSep } = referenciasSep
   const creditoPosgrado = 4460
+  const creditoTrabajoFinal = 4725
 
   const firstSelectedCode = Array.from(selectedLabs)[0]
   const firstSelectedLab = materias.find(m => m.codigo === firstSelectedCode)
@@ -30,16 +37,44 @@ function Referencias() {
 
   if (selectedGrade === 'Grado') {
     if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
-      rows = [
-        { label: 'Crédito', value: creditos },
-        ...(techResource ? [{ label: 'Rec. Tecnológicos', value: recursosTec }] : []),
-        { label: 'Lab. Tecnología', value: firstLabCost },
-        { label: 'Serv. Carnet', value: carnet },
-      ]
+    rows = [
+      { label: 'Crédito regular', value: creditos },
+
+      ...(trabajoFinal
+        ? [{
+            label:
+              trabajoFinal === 'MON400'
+                ? 'Crédito MON400'
+                : 'Crédito TES500',
+            value: creditoTrabajoFinal,
+          }]
+        : []),
+
+      ...(techResource
+        ? [{ label: 'Rec. Tecnológicos', value: recursosTec }]
+        : []),
+
+      { label: 'Lab. Tecnología', value: firstLabCost },
+      { label: 'Serv. Carnet', value: carnet },
+    ]
     } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
       rows = [
-        { label: 'Crédito', value: creditosSep },
-        ...(techResource ? [{ label: 'Rec. Tecnológicos', value: recurstosTecSep }] : []),
+        { label: 'Crédito regular', value: creditosSep },
+
+        ...(trabajoFinal
+          ? [{
+              label:
+                trabajoFinal === 'MON400'
+                  ? 'Crédito MON400'
+                  : 'Crédito TES500',
+              value: creditoTrabajoFinal,
+            }]
+          : []),
+
+        ...(techResource
+          ? [{ label: 'Rec. Tecnológicos', value: recurstosTecSep }]
+          : []),
+
         { label: 'Lab. Tecnología', value: firstLabCost },
         { label: 'Serv. Carnet', value: carnetSep },
       ]
