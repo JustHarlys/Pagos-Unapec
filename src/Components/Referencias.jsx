@@ -116,7 +116,7 @@ function Referencias() {
           Referencias de costos
         </Typography>
         <Typography variant="caption" color="text.secondary">
-          Tarifario vigente desde ago. 2025
+          Tarifario vigente desde ago. 2026
         </Typography>
       </Box>
 
