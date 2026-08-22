@@ -8,7 +8,13 @@ function Nav() {
 
   return (
     <AppBar position="sticky" elevation={0}>
-      <Toolbar sx={{ justifyContent: 'space-between', px: { xs: 2, md: 4 }, minHeight: { xs: 56, sm: 60 } }}>
+      <Toolbar
+        sx={{
+          justifyContent: 'space-between',
+          px: { xs: 2, md: 4 },
+          minHeight: { xs: 56, sm: 60 },
+        }}
+      >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
           <Box
             sx={{
@@ -25,34 +31,72 @@ function Nav() {
               src={unapecLogo}
               alt="Logo UNAPEC"
               height={28}
-              style={{ objectFit: 'contain', display: 'block' }}
+              style={{
+                objectFit: 'contain',
+                display: 'block',
+              }}
             />
           </Box>
+
           <Typography
             variant="subtitle2"
             fontWeight={600}
-            sx={{ color: 'rgba(255,255,255,0.92)', display: { xs: 'none', sm: 'block' }, letterSpacing: '0.2px' }}
+            sx={{
+              color: 'rgba(255,255,255,0.92)',
+              display: { xs: 'none', sm: 'block' },
+              letterSpacing: '0.2px',
+            }}
           >
             Estimador de Colegiatura
           </Typography>
         </Box>
 
         <Box sx={{ display: 'flex', gap: 0.5 }}>
-          <Tooltip title={darkMode ? 'Modo claro' : 'Modo oscuro'} placement="bottom">
-            <IconButton onClick={handleToggle} size="medium" sx={{ color: 'rgba(255,255,255,0.85)', '&:hover': { color: '#fff', bgcolor: 'rgba(255,255,255,0.1)' } }}>
-              <i className={darkMode ? 'fa-solid fa-sun' : 'fa-solid fa-moon'} style={{ fontSize: 17 }} />
+          {/* Dark mode */}
+          <Tooltip
+            title={darkMode ? 'Modo claro' : 'Modo oscuro'}
+            placement="bottom"
+          >
+            <IconButton
+              onClick={handleToggle}
+              size="medium"
+              sx={{
+                color: 'rgba(255,255,255,0.85)',
+                '&:hover': {
+                  color: '#fff',
+                  bgcolor: 'rgba(255,255,255,0.1)',
+                },
+              }}
+            >
+              <i
+                className={
+                  darkMode
+                    ? 'fa-solid fa-sun'
+                    : 'fa-solid fa-moon'
+                }
+                style={{ fontSize: 17 }}
+              />
             </IconButton>
           </Tooltip>
-          <Tooltip title="Ver en GitHub" placement="bottom">
+
+          {/* Calendario académico */}
+          <Tooltip title="Calendario académico" placement="bottom">
             <IconButton
               component="a"
-              href="https://github.com/JustHarlys/Pagos-Unapec"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/calendario"
               size="medium"
-              sx={{ color: 'rgba(255,255,255,0.85)', '&:hover': { color: '#fff', bgcolor: 'rgba(255,255,255,0.1)' } }}
+              sx={{
+                color: 'rgba(255,255,255,0.85)',
+                '&:hover': {
+                  color: '#fff',
+                  bgcolor: 'rgba(255,255,255,0.1)',
+                },
+              }}
             >
-              <i className="fa-brands fa-github" style={{ fontSize: 17 }} />
+              <i
+                className="fa-regular fa-calendar-days"
+                style={{ fontSize: 17 }}
+              />
             </IconButton>
           </Tooltip>
         </Box>

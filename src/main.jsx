@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material'
 import App from './App.jsx'
 import DarkModeToggleProvider, { DarkModeContext } from './Context/DarkModeToggleContext.jsx'
+import { BrowserRouter } from 'react-router-dom'
 
 const lightTokens = {
   primary: '#1E3A5F',
@@ -138,6 +139,8 @@ function ThemedApp() {
 
 createRoot(document.getElementById('root')).render(
   <DarkModeToggleProvider>
-    <ThemedApp />
+    <BrowserRouter>
+      <ThemedApp />
+    </BrowserRouter>
   </DarkModeToggleProvider>
 )
