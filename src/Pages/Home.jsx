@@ -146,29 +146,6 @@ function Home() {
                     />
                   </IconButton>
                 </Tooltip>
-
-                <Tooltip title="Ver en GitHub" placement="bottom">
-                  <IconButton
-                    component="a"
-                    href="https://github.com/JustHarlys/Pagos-Unapec"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{
-                      width: 40,
-                      height: 40,
-                      color: 'rgba(255,255,255,0.85)',
-                      '&:hover': {
-                        color: '#fff',
-                        bgcolor: 'rgba(255,255,255,0.12)',
-                      },
-                    }}
-                  >
-                    <i
-                      className="fa-brands fa-github"
-                      style={{ fontSize: 17 }}
-                    />
-                  </IconButton>
-                </Tooltip>
               </Box>
             </Box>
           </Container>
