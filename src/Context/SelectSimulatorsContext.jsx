@@ -7,6 +7,7 @@ import {
 } from 'react'
 
 import { simuladores } from '../data/simuladores'
+import { simuladoresPosgrado } from '../data/simuladoresPosgrado'
 import { GradeAndPeriodContext } from './GradeAndPeriodContext'
 
 export const SelectSimulatorsContext = createContext()
@@ -20,14 +21,14 @@ export default function SelectSimulatorsProvider({ children }) {
   const [filteredSubjects, setFilteredSubjects] = useState(simuladores)
 
   useEffect(() => {
-    if (selectedGrade === 'Grado') {
+    if (selectedGrade === 'Grado' || !selectedGrade) {
       setFilteredSubjects(simuladores)
-    } else {
-      setFilteredSubjects([])
-      setSelectedSimulators(new Set())
-      setSearchSubject('')
-      setShowMenu(false)
+    } else if (selectedGrade === 'Posgrado') {
+      setFilteredSubjects(simuladoresPosgrado)
     }
+
+    setSelectedSimulators(new Set())
+    setSearchSubject('')
   }, [selectedGrade])
 
   function handleSelectMenu() {
@@ -50,9 +51,9 @@ export default function SelectSimulatorsProvider({ children }) {
 
   const selectedTotal = useMemo(() => {
     return Array.from(selectedSimulators).reduce((total, codigo) => {
-      const simulator = simuladores.find(
-        materia => materia.codigo === codigo
-      )
+      const simulator =
+        simuladores.find(m => m.codigo === codigo) ||
+        simuladoresPosgrado.find(m => m.codigo === codigo)
 
       return total + (simulator ? simulator.costo : 0)
     }, 0)

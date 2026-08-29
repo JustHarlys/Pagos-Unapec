@@ -5,7 +5,6 @@ export const GradeAndPeriodContext = createContext();
 
 export default function GradeAndPeriodProvider({ children }) {
 
-  const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedGrade, setSelectedGrade] = useState('');
   const [totalCredits, setTotalCredits] = useState(0);
   const [tuition, setTuition] = useState(0);
@@ -37,8 +36,6 @@ export default function GradeAndPeriodProvider({ children }) {
 
   return (
       <GradeAndPeriodContext.Provider value={{
-        selectedCategory,
-        setSelectedCategory,
         selectedGrade,
         setSelectedGrade,
         totalCredits,

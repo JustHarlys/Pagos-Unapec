@@ -42,7 +42,11 @@ function SimulatorCheckbox({ materia }) {
             </span>
 
             <Chip
-              label={materia.tipo}
+              label={
+                materia.referencia
+                  ? `${materia.tipo} · ${materia.referencia}`
+                  : materia.tipo
+              }
               size="small"
               variant="outlined"
               sx={{

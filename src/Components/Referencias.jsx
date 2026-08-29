@@ -1,9 +1,5 @@
-import { referenciasMayo } from "../referencias-may-ago"
-import { referenciasSep } from "../referencias-sep-dic"
 import { useContext } from "react"
 import { GradeAndPeriodContext } from "../Context/GradeAndPeriodContext"
-import { SelectLaboratoriesContext } from "../Context/SelectLaboratories"
-import { materias } from "../data/materias"
 import {
   Paper,
   Typography,
@@ -13,164 +9,244 @@ import {
   TableCell,
   Box,
 } from "@mui/material"
+import { referenciasActuales } from "../data/referenciasActuales"
 
 function Referencias() {
+  const { selectedGrade } = useContext(GradeAndPeriodContext)
 
-  const {
-    selectedCategory,
-    selectedGrade,
-    techResource,
-    trabajoFinal,
-  } = useContext(GradeAndPeriodContext)
-  const { selectedLabs } = useContext(SelectLaboratoriesContext)
+  const referenciasGrado = [
+    {
+      categoria: 'Académicos',
+      items: [
+        {
+          label: 'Crédito',
+          value: referenciasActuales.grado.credito,
+        },
+        {
+          label: 'Rec. Tecnológicos',
+          value: referenciasActuales.recursosTec,
+        },
+        {
+          label: 'Serv. Carnet',
+          value: referenciasActuales.carnet,
+        },
+      ],
+    },
 
-  const { recursosTec, creditos, carnet } = referenciasMayo
-  const { recurstosTecSep, creditosSep, carnetSep } = referenciasSep
-  const creditoPosgrado = 4460
-  const creditoTrabajoFinal = 4725
+    {
+      categoria: 'Laboratorios',
+      items: [
+        {
+          label: 'LTEC — Tecnología / Informática',
+          value: referenciasActuales.laboratorios.LTEC,
+        },
+        {
+          label: 'LART — Arte',
+          value: referenciasActuales.laboratorios.LART,
+        },
+        {
+          label: 'LTUR — Turismo',
+          value: referenciasActuales.laboratorios.LTUR,
+        },
+      ],
+    },
 
-  const firstSelectedCode = Array.from(selectedLabs)[0]
-  const firstSelectedLab = materias.find(m => m.codigo === firstSelectedCode)
-  const firstLabCost = firstSelectedLab?.costo || 0
-
-  let rows = null
-
-  if (selectedGrade === 'Grado') {
-    if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
-    rows = [
-      { label: 'Crédito regular', value: creditos },
-
-      ...(trabajoFinal
-        ? [{
-            label:
-              trabajoFinal === 'MON400'
-                ? 'Crédito MON400'
-                : 'Crédito TES500',
-            value: creditoTrabajoFinal,
-          }]
-        : []),
-
-      ...(techResource
-        ? [{ label: 'Rec. Tecnológicos', value: recursosTec }]
-        : []),
-
-      { label: 'Lab. Tecnología', value: firstLabCost },
-      { label: 'Serv. Carnet', value: carnet },
-    ]
-    } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
-      rows = [
-        { label: 'Crédito regular', value: creditosSep },
-
-        ...(trabajoFinal
-          ? [{
-              label:
-                trabajoFinal === 'MON400'
-                  ? 'Crédito MON400'
-                  : 'Crédito TES500',
-              value: creditoTrabajoFinal,
-            }]
-          : []),
-
-        ...(techResource
-          ? [{ label: 'Rec. Tecnológicos', value: recurstosTecSep }]
-          : []),
-
-        { label: 'Lab. Tecnología', value: firstLabCost },
+    {
+      categoria: 'Simulación y aprendizaje',
+      items: [
+        {
+          label: 'Objetos de aprendizaje — TATA',
+          value: referenciasActuales.simulacion.TATA,
+        },
         {
           label: 'Simulador',
-          value: 2910,
+          value: referenciasActuales.simulacion.simulador,
         },
         {
           label: 'Microcredencial',
-          value: 2050,
+          value: referenciasActuales.simulacion.microcredencial,
         },
         {
           label: 'Simulador ADM535',
-          value: 3300,
+          value: referenciasActuales.simulacion.ADM535,
         },
-        { label: 'Serv. Carnet', value: carnetSep },
-      ]
-    }
-  } else if (selectedGrade === 'Posgrado') {
-    if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
-      rows = [
-        { label: 'Crédito', value: creditoPosgrado },
-        ...(techResource
-          ? [{ label: 'Rec. Tecnológicos', value: recursosTec }]
-          : []),
-        { label: 'Lab. Tecnología', value: firstLabCost },
-        { label: 'Serv. Carnet', value: carnet },
-      ]
-    } else if (selectedCategory === 'Admitido a partir de sept-dic 2024') {
-      rows = [
-        { label: 'Crédito', value: creditoPosgrado },
-        ...(techResource
-          ? [{ label: 'Rec. Tecnológicos', value: recurstosTecSep }]
-          : []),
-        { label: 'Lab. Tecnología', value: firstLabCost },
-        { label: 'Serv. Carnet', value: carnetSep },
-      ]
-    }
-  }
+      ],
+    },
+  ]
+
+  const referenciasPosgrado = [
+    {
+      categoria: 'Académicos',
+      items: [
+        {
+          label: 'Crédito',
+          value: referenciasActuales.posgrado.credito,
+        },
+        {
+          label: 'Rec. Tecnológicos',
+          value: referenciasActuales.recursosTec,
+        },
+        {
+          label: 'Serv. Carnet',
+          value: referenciasActuales.carnet,
+        },
+      ],
+    },
+
+    {
+      categoria: 'Laboratorios',
+      items: [
+        {
+          label: 'LTEC — Tecnología / Informática',
+          value: referenciasActuales.laboratorios.LTEC,
+        },
+      ],
+    },
+
+    {
+      categoria: 'Simulación y aprendizaje',
+      items: [
+        {
+          label: 'Objetos de aprendizaje — TATA',
+          value: referenciasActuales.simulacion.TATA,
+        },
+        {
+          label: 'Simulador — SPOS',
+          value: referenciasActuales.simulacion.simulador,
+        },
+      ],
+    },
+  ]
+
+  const references =
+    selectedGrade === 'Grado'
+      ? referenciasGrado
+      : selectedGrade === 'Posgrado'
+        ? referenciasPosgrado
+        : []
 
   return (
-    <Paper sx={{ borderRadius: 3, overflow: 'hidden', flex: 1 }}>
+    <Paper
+      sx={{
+        borderRadius: 3,
+        overflow: 'hidden',
+        flex: 1,
+      }}
+    >
       <Box
         sx={{
           px: 3,
           py: 2,
           borderBottom: '1px solid',
           borderColor: 'divider',
-          bgcolor: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : '#FAFBFC',
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark'
+              ? 'rgba(255,255,255,0.03)'
+              : '#FAFBFC',
         }}
       >
         <Typography variant="subtitle2" fontWeight={700}>
           Referencias de costos
         </Typography>
+
         <Typography variant="caption" color="text.secondary">
           Tarifario vigente desde ago. 2026
         </Typography>
       </Box>
 
       <Box sx={{ px: 2, py: 2 }}>
-        {selectedCategory === '' || selectedGrade === '' ? (
-          <Box sx={{ px: 1, py: 1, display: 'flex', alignItems: 'center', gap: 1.5 }}>
-            <i className="fa-solid fa-circle-info" style={{ fontSize: 16, opacity: 0.4 }} />
+        {selectedGrade === '' ? (
+          <Box
+            sx={{
+              px: 1,
+              py: 1,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1.5,
+            }}
+          >
+            <i
+              className="fa-solid fa-circle-info"
+              style={{
+                fontSize: 16,
+                opacity: 0.4,
+              }}
+            />
+
             <Typography variant="body2" color="text.secondary">
-              Elige período y grado para ver los precios de referencia.
+              Elige el nivel académico para ver los precios de referencia.
             </Typography>
           </Box>
         ) : (
-          <Table size="small">
-            <TableBody>
-              {rows?.map((row, i) => (
-                <TableRow
-                  key={i}
+          <>
+            {references.map((section) => (
+              <Box
+                key={section.categoria}
+                sx={{
+                  mb: 2.5,
+                  '&:last-child': {
+                    mb: 0,
+                  },
+                }}
+              >
+                <Typography
+                  variant="caption"
+                  fontWeight={700}
+                  color="text.secondary"
                   sx={{
-                    '&:nth-of-type(odd)': {
-                      bgcolor: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)',
-                    },
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.6px',
+                    px: 1,
                   }}
                 >
-                  <TableCell sx={{ fontWeight: 500, border: 0, py: 1, fontSize: '0.82rem' }}>
-                    {row.label}
-                  </TableCell>
-                  <TableCell
-                    align="right"
-                    sx={{
-                      border: 0,
-                      py: 1,
-                      fontSize: '0.82rem',
-                      fontFamily: '"Fira Code", monospace',
-                      fontWeight: 500,
-                    }}
-                  >
-                    RD$ {row.value.toLocaleString()}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+                  {section.categoria}
+                </Typography>
+
+                <Table size="small" sx={{ mt: 0.5 }}>
+                  <TableBody>
+                    {section.items.map((row, i) => (
+                      <TableRow
+                        key={row.label}
+                        sx={{
+                          '&:nth-of-type(odd)': {
+                            bgcolor: (theme) =>
+                              theme.palette.mode === 'dark'
+                                ? 'rgba(255,255,255,0.02)'
+                                : 'rgba(0,0,0,0.02)',
+                          },
+                        }}
+                      >
+                        <TableCell
+                          sx={{
+                            fontWeight: 500,
+                            border: 0,
+                            py: 1,
+                            fontSize: '0.82rem',
+                          }}
+                        >
+                          {row.label}
+                        </TableCell>
+
+                        <TableCell
+                          align="right"
+                          sx={{
+                            border: 0,
+                            py: 1,
+                            fontSize: '0.82rem',
+                            fontFamily: '"Fira Code", monospace',
+                            fontWeight: 500,
+                            whiteSpace: 'nowrap',
+                          }}
+                        >
+                          RD$ {row.value.toLocaleString()}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </Box>
+            ))}
+          </>
         )}
       </Box>
     </Paper>

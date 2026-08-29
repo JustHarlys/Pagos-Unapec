@@ -16,8 +16,7 @@ import {
 } from '@mui/material';
 import { useContext } from 'react';
 import { GradeAndPeriodContext } from '../Context/GradeAndPeriodContext';
-import { referenciasMayo } from '../referencias-may-ago';
-import { referenciasSep } from '../referencias-sep-dic';
+import { referenciasActuales } from '../data/referenciasActuales'
 import { SelectLaboratoriesContext } from '../Context/SelectLaboratories';
 import SelectLabs from './SelectLabs';
 import HelpContainer from './HelpContainer';
@@ -26,8 +25,6 @@ import SelectSimulators from './SelectSimulators'
 
 function LandingPage() {
   const {
-    selectedCategory,
-    setSelectedCategory,
     selectedGrade,
     setSelectedGrade,
     totalCredits,
@@ -62,49 +59,44 @@ function LandingPage() {
     setTotalCredits(parseInt(e.target.value));
   }
 
-function handleCreditsMultiplier() {
-  let costoCreditoRegular = 0
+  function handleCreditsMultiplier() {
+    let costoCreditoRegular = 0
 
-  if (selectedGrade === 'Grado') {
-    if (selectedCategory === 'Admitido hasta mayo-ago 2024') {
-      costoCreditoRegular = referenciasMayo.creditos
-    } else if (
-      selectedCategory === 'Admitido a partir de sept-dic 2024'
-    ) {
-      costoCreditoRegular = referenciasSep.creditosSep
+    if (selectedGrade === 'Grado') {
+      costoCreditoRegular = referenciasActuales.grado.credito
+    } else if (selectedGrade === 'Posgrado') {
+      costoCreditoRegular = referenciasActuales.posgrado.credito
     }
-  } else if (selectedGrade === 'Posgrado') {
-    costoCreditoRegular = creditoPosgrado
+
+    const creditosRegulares = Number(totalCredits) || 0
+
+    const subtotalCreditosRegulares =
+      creditosRegulares * costoCreditoRegular
+
+    const cursaTrabajoFinal =
+      selectedGrade === 'Grado' &&
+      (trabajoFinal === 'MON400' || trabajoFinal === 'TES500')
+
+    const subtotalTrabajoFinal = cursaTrabajoFinal
+      ? 6 * referenciasActuales.grado.trabajoFinal
+      : 0
+
+    const totalSinDescuento =
+      subtotalCreditosRegulares +
+      subtotalTrabajoFinal
+
+    const totalFinal =
+      paymentMethod === 'Contado'
+        ? totalSinDescuento * 0.90
+        : totalSinDescuento
+
+    setRegularCreditsSubtotal(subtotalCreditosRegulares)
+    setFinalProjectSubtotal(subtotalTrabajoFinal)
+
+    setNoDiscount(totalSinDescuento)
+    setTuition(totalFinal)
+    setCreditReference(costoCreditoRegular)
   }
-
-  const creditosRegulares = Number(totalCredits) || 0
-
-  const subtotalCreditosRegulares =
-    creditosRegulares * costoCreditoRegular
-
-  const cursaTrabajoFinal =
-    selectedGrade === 'Grado' &&
-    (trabajoFinal === 'MON400' || trabajoFinal === 'TES500')
-
-  const subtotalTrabajoFinal = cursaTrabajoFinal
-    ? CREDITOS_TRABAJO_FINAL * CREDITO_TRABAJO_FINAL
-    : 0
-
-  const totalSinDescuento =
-    subtotalCreditosRegulares + subtotalTrabajoFinal
-
-  const totalFinal =
-    paymentMethod === 'Contado'
-      ? totalSinDescuento * 0.90
-      : totalSinDescuento
-
-  setRegularCreditsSubtotal(subtotalCreditosRegulares)
-  setFinalProjectSubtotal(subtotalTrabajoFinal)
-
-  setNoDiscount(totalSinDescuento)
-  setTuition(totalFinal)
-  setCreditReference(costoCreditoRegular)
-}
 
   return (
     <Paper sx={{ borderRadius: 3, overflow: 'hidden' }}>
@@ -141,19 +133,6 @@ function handleCreditsMultiplier() {
         <Typography variant="caption" fontWeight={600} color="text.secondary" sx={{ textTransform: 'uppercase', letterSpacing: '0.6px' }}>
           Perfil académico
         </Typography>
-
-        <FormControl fullWidth margin="normal" size="small">
-          <InputLabel>Categoría de admisión</InputLabel>
-          <Select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            label="Categoría de admisión"
-            MenuProps={{ disableScrollLock: true }}
-          >
-            <MenuItem value="Admitido hasta mayo-ago 2024">Admitido hasta mayo-ago 2024</MenuItem>
-            <MenuItem value="Admitido a partir de sept-dic 2024">Admitido a partir de sept-dic 2024</MenuItem>
-          </Select>
-        </FormControl>
 
         <FormControl fullWidth margin="normal" size="small">
           <InputLabel>Nivel de grado</InputLabel>
@@ -255,13 +234,13 @@ function handleCreditsMultiplier() {
           </Button>
         </Box>
 
-        {selectedGrade === 'Grado' && (
+        {selectedGrade && (
           <Box
             sx={{
               display: 'flex',
               gap: 1.5,
               alignItems: 'stretch',
-              mt: 3,
+              mt: 1,
               mb: 0.5,
               flexDirection: {
                 xs: 'column',
@@ -277,9 +256,7 @@ function handleCreditsMultiplier() {
               }
               label={
                 selectedSimulators.size > 0
-                  ? `${selectedSimulators.size} cargo${
-                      selectedSimulators.size > 1 ? 's' : ''
-                    } seleccionado${
+                  ? `${selectedSimulators.size} seleccionado${
                       selectedSimulators.size > 1 ? 's' : ''
                     }`
                   : ''
@@ -311,7 +288,7 @@ function handleCreditsMultiplier() {
                 }}
               />
 
-              Simuladores / Microcred.
+              Simuladores / Extras
             </Button>
           </Box>
         )}
