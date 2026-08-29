@@ -21,6 +21,8 @@ import { referenciasSep } from '../referencias-sep-dic';
 import { SelectLaboratoriesContext } from '../Context/SelectLaboratories';
 import SelectLabs from './SelectLabs';
 import HelpContainer from './HelpContainer';
+import { SelectSimulatorsContext } from '../Context/SelectSimulatorsContext'
+import SelectSimulators from './SelectSimulators'
 
 function LandingPage() {
   const {
@@ -46,6 +48,11 @@ function LandingPage() {
   } = useContext(GradeAndPeriodContext);
 
   const { showMenu, handleSelectMenu, selectedLabs } = useContext(SelectLaboratoriesContext);
+  const {
+    showMenu: showSimulatorMenu,
+    handleSelectMenu: handleSimulatorMenu,
+    selectedSimulators,
+  } = useContext(SelectSimulatorsContext);
 
   const creditoPosgrado = 4460
   const CREDITO_TRABAJO_FINAL = 4725
@@ -248,6 +255,67 @@ function handleCreditsMultiplier() {
           </Button>
         </Box>
 
+        {selectedGrade === 'Grado' && (
+          <Box
+            sx={{
+              display: 'flex',
+              gap: 1.5,
+              alignItems: 'stretch',
+              mt: 3,
+              mb: 0.5,
+              flexDirection: {
+                xs: 'column',
+                sm: 'row',
+              },
+            }}
+          >
+            <TextField
+              value={
+                selectedSimulators.size === 0
+                  ? ''
+                  : selectedSimulators.size
+              }
+              label={
+                selectedSimulators.size > 0
+                  ? `${selectedSimulators.size} cargo${
+                      selectedSimulators.size > 1 ? 's' : ''
+                    } seleccionado${
+                      selectedSimulators.size > 1 ? 's' : ''
+                    }`
+                  : ''
+              }
+              type="number"
+              size="small"
+              sx={{ flex: 1 }}
+              InputProps={{ readOnly: true }}
+              placeholder="Sin simuladores"
+              disabled
+            />
+
+            <Button
+              variant="outlined"
+              onClick={handleSimulatorMenu}
+              size="small"
+              sx={{
+                flex: 1,
+                whiteSpace: 'nowrap',
+                borderStyle: 'dashed',
+                height: 40,
+              }}
+            >
+              <i
+                className="fa-solid fa-laptop"
+                style={{
+                  marginRight: 8,
+                  fontSize: 12,
+                }}
+              />
+
+              Simuladores / Microcred.
+            </Button>
+          </Box>
+        )}
+
         <FormControlLabel
           control={<Checkbox size="small" />}
           value={techResource}
@@ -299,6 +367,7 @@ function handleCreditsMultiplier() {
       </Box>
 
       {showMenu && <SelectLabs />}
+      {showSimulatorMenu && ( <SelectSimulators /> )}
     </Paper>
   );
 }

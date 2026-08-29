@@ -3,6 +3,7 @@ import { GradeAndPeriodContext } from "../Context/GradeAndPeriodContext"
 import { SelectLaboratoriesContext } from "../Context/SelectLaboratories"
 import { referenciasMayo } from "../referencias-may-ago"
 import { Table, TableBody, TableRow, TableCell, Divider, Typography } from "@mui/material"
+import { SelectSimulatorsContext } from "../Context/SelectSimulatorsContext"
 
 function Contado() {
   const {
@@ -13,14 +14,20 @@ function Contado() {
     finalProjectSubtotal,
   } = useContext(GradeAndPeriodContext)
 
-  const { selectedTotal } = useContext(SelectLaboratoriesContext)
+  const {
+    selectedTotal: laboratoriesTotal,
+  } = useContext(SelectLaboratoriesContext)
+
+  const {
+    selectedTotal: simulatorsTotal,
+  } = useContext(SelectSimulatorsContext)
 
   const recursosTec = techResource ? referenciasMayo.recursosTec : 0
   const { carnet } = referenciasMayo
   const regularCreditsWithDiscount = regularCreditsSubtotal * 0.90
   const finalProjectWithDiscount = finalProjectSubtotal * 0.90
 
-  const totalPayment = carnet + selectedTotal + recursosTec + tuition
+  const totalPayment = carnet + laboratoriesTotal + recursosTec + tuition + simulatorsTotal;
 
   const rows = [
     ...(regularCreditsSubtotal > 0
@@ -46,12 +53,19 @@ function Contado() {
           value: recursosTec,
         }]
       : []),
+    ...(laboratoriesTotal > 0
+      ? [{
+          label: 'Lab. Tecnología',
+          value: laboratoriesTotal,
+        }]
+      : []),
 
-    {
-      label: 'Lab. Tecnología',
-      value: selectedTotal,
-    },
-
+    ...(simulatorsTotal > 0
+      ? [{
+          label: 'Simuladores / Microcred.',
+          value: simulatorsTotal,
+        }]
+      : []),
     {
       label: 'Serv. Carnet',
       value: carnet,

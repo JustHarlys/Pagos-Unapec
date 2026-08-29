@@ -8,7 +8,7 @@ import { Box, Container, Typography, IconButton, Tooltip } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 import { DarkModeContext } from '../Context/DarkModeToggleContext'
-
+import SelectSimulatorsProvider from '../Context/SelectSimulatorsContext'
 import LandingPage from '../Components/LandingPage'
 import Referencias from '../Components/Referencias'
 import GradeAndPeriodProvider from '../Context/GradeAndPeriodContext'
@@ -159,6 +159,7 @@ function Home() {
           }}
         >
           <SelectLaboratoriesProvider>
+            <SelectSimulatorsProvider>
             <Box
               sx={{
                 display: 'flex',
@@ -199,6 +200,7 @@ function Home() {
                 </Box>
               </Box>
             </Box>
+            </SelectSimulatorsProvider>
           </SelectLaboratoriesProvider>
         </Container>
 

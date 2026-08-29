@@ -3,6 +3,7 @@ import { GradeAndPeriodContext } from "../Context/GradeAndPeriodContext"
 import { SelectLaboratoriesContext } from "../Context/SelectLaboratories"
 import { referenciasMayo } from "../referencias-may-ago"
 import { Table, TableBody, TableRow, TableCell, Divider, Typography } from "@mui/material"
+import { SelectSimulatorsContext } from "../Context/SelectSimulatorsContext"
 
 const twentyPercent = 0.20
 const eightyPercent = 0.80
@@ -10,7 +11,14 @@ const tenPercent = 0.10
 
 function PaymentMethod20() {
   const { noDiscount, techResource } = useContext(GradeAndPeriodContext)
-  const { selectedTotal } = useContext(SelectLaboratoriesContext)
+
+  const {
+    selectedTotal: laboratoriesTotal,
+  } = useContext(SelectLaboratoriesContext)
+
+  const {
+    selectedTotal: simulatorsTotal,
+  } = useContext(SelectSimulatorsContext)
 
   const recursosTec = techResource ? referenciasMayo.recursosTec : 0
   const frontPayment = noDiscount * twentyPercent
@@ -19,16 +27,60 @@ function PaymentMethod20() {
   const diferredPayments = diferredCredits / 3
   const admChargesPerMonth = (admCharges / 3).toFixed(2)
   const diferredPaymentsFixed = (diferredCredits / 3).toFixed(2)
-  const totalFirstPayment = (frontPayment + selectedTotal + recursosTec + referenciasMayo.carnet).toFixed(2)
+
+const totalFirstPayment = (
+  frontPayment +
+  laboratoriesTotal +
+  simulatorsTotal +
+  recursosTec +
+  referenciasMayo.carnet
+).toFixed(2)
+
   const monthlyTotal = ((admCharges / 3) + diferredPayments).toFixed(2)
-  const fullTermTotal = (frontPayment + selectedTotal + recursosTec + referenciasMayo.carnet) + (((admCharges / 3) + diferredPayments) * 3)
+
+  const fullTermTotal =
+    (
+      frontPayment +
+      laboratoriesTotal +
+      simulatorsTotal +
+      recursosTec +
+      referenciasMayo.carnet
+    ) +
+    (((admCharges / 3) + diferredPayments) * 3)
+
   const nf = new Intl.NumberFormat('en-US')
 
   const immediateRows = [
-    { label: 'Anticipo 20%', value: nf.format(frontPayment) },
-    { label: 'Lab. Tecnología', value: nf.format(selectedTotal) },
-    ...(techResource ? [{ label: 'Rec. Tecnológicos', value: nf.format(recursosTec) }] : []),
-    { label: 'Serv. Carnet', value: nf.format(referenciasMayo.carnet) },
+    {
+      label: 'Anticipo 20%',
+      value: nf.format(frontPayment),
+    },
+
+    ...(laboratoriesTotal > 0
+      ? [{
+          label: 'Lab. Tecnología',
+          value: nf.format(laboratoriesTotal),
+        }]
+      : []),
+
+    ...(simulatorsTotal > 0
+      ? [{
+          label: 'Simuladores / Microcred.',
+          value: nf.format(simulatorsTotal),
+        }]
+      : []),
+
+    ...(techResource
+      ? [{
+          label: 'Rec. Tecnológicos',
+          value: nf.format(recursosTec),
+        }]
+      : []),
+
+    {
+      label: 'Serv. Carnet',
+      value: nf.format(referenciasMayo.carnet),
+    },
   ]
 
   const monthlyRows = [

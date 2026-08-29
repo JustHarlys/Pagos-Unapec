@@ -76,6 +76,18 @@ function Referencias() {
           : []),
 
         { label: 'Lab. Tecnología', value: firstLabCost },
+        {
+          label: 'Simulador',
+          value: 2910,
+        },
+        {
+          label: 'Microcredencial',
+          value: 2050,
+        },
+        {
+          label: 'Simulador ADM535',
+          value: 3300,
+        },
         { label: 'Serv. Carnet', value: carnetSep },
       ]
     }
