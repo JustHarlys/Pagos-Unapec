@@ -1,8 +1,14 @@
 import { useContext } from "react"
 import { GradeAndPeriodContext } from "../Context/GradeAndPeriodContext"
 import { SelectLaboratoriesContext } from "../Context/SelectLaboratories"
-import { referenciasMayo } from "../referencias-may-ago"
-import { Table, TableBody, TableRow, TableCell, Divider, Typography } from "@mui/material"
+import { SelectSimulatorsContext } from "../Context/SelectSimulatorsContext"
+import { referenciasActuales } from "../data/referenciasActuales"
+
+import {
+  Box,
+  Divider,
+  Typography,
+} from "@mui/material"
 
 function Contado() {
   const {
@@ -13,14 +19,32 @@ function Contado() {
     finalProjectSubtotal,
   } = useContext(GradeAndPeriodContext)
 
-  const { selectedTotal } = useContext(SelectLaboratoriesContext)
+  const {
+    selectedTotal: laboratoriesTotal,
+  } = useContext(SelectLaboratoriesContext)
 
-  const recursosTec = techResource ? referenciasMayo.recursosTec : 0
-  const { carnet } = referenciasMayo
-  const regularCreditsWithDiscount = regularCreditsSubtotal * 0.90
-  const finalProjectWithDiscount = finalProjectSubtotal * 0.90
+  const {
+    selectedTotal: simulatorsTotal,
+  } = useContext(SelectSimulatorsContext)
 
-  const totalPayment = carnet + selectedTotal + recursosTec + tuition
+  const recursosTec = techResource
+    ? referenciasActuales.recursosTec
+    : 0
+
+  const { carnet } = referenciasActuales
+
+  const regularCreditsWithDiscount =
+    regularCreditsSubtotal * 0.90
+
+  const finalProjectWithDiscount =
+    finalProjectSubtotal * 0.90
+
+  const totalPayment =
+    carnet +
+    laboratoriesTotal +
+    simulatorsTotal +
+    recursosTec +
+    tuition
 
   const rows = [
     ...(regularCreditsSubtotal > 0
@@ -34,8 +58,8 @@ function Contado() {
       ? [{
           label:
             trabajoFinal === 'MON400'
-              ? 'Monográfico (6 créditos)'
-              : 'Tesis (6 créditos)',
+              ? 'Monográfico'
+              : 'Tesis',
           value: finalProjectWithDiscount,
         }]
       : []),
@@ -47,10 +71,19 @@ function Contado() {
         }]
       : []),
 
-    {
-      label: 'Lab. Tecnología',
-      value: selectedTotal,
-    },
+    ...(laboratoriesTotal > 0
+      ? [{
+          label: 'Laboratorios',
+          value: laboratoriesTotal,
+        }]
+      : []),
+
+    ...(simulatorsTotal > 0
+      ? [{
+          label: 'Simulación / Aprendizaje',
+          value: simulatorsTotal,
+        }]
+      : []),
 
     {
       label: 'Serv. Carnet',
@@ -59,35 +92,98 @@ function Contado() {
   ]
 
   return (
-    <>
-      <Table size="small" sx={{ mt: 1 }}>
-        <TableBody>
-          {rows.map((row, i) => (
-            <TableRow key={i} hover>
-              <TableCell sx={{ border: 0, py: 1 }}>{row.label}</TableCell>
-              <TableCell align="right" sx={{ border: 0, py: 1 }}>
-                RD$ {row.value.toLocaleString()}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <Divider sx={{ my: 1 }} />
-      <Table size="small">
-        <TableBody>
-          <TableRow>
-            <TableCell sx={{ border: 0, py: 1, fontWeight: 700 }}>
-              <Typography variant="body2" fontWeight={700}>Total Neto</Typography>
-            </TableCell>
-            <TableCell align="right" sx={{ border: 0, py: 1 }}>
-              <Typography variant="body2" fontWeight={700} color="success.main" sx={{ fontFamily: '"Fira Code", monospace' }}>
-                RD$ {totalPayment.toLocaleString()}
-              </Typography>
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </>
+    <Box sx={{ mt: 0.5 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 0.5,
+        }}
+      >
+        {rows.map((row) => (
+          <Box
+            key={row.label}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 2,
+              px: 1.5,
+              py: 1.25,
+              borderRadius: 1.5,
+              transition: 'background-color 0.15s ease',
+
+              '&:hover': {
+                bgcolor: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? 'rgba(255,255,255,0.04)'
+                    : 'rgba(0,0,0,0.025)',
+              },
+            }}
+          >
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{
+                fontWeight: 500,
+                minWidth: 0,
+              }}
+            >
+              {row.label}
+            </Typography>
+
+            <Typography
+              variant="body2"
+              sx={{
+                fontWeight: 600,
+                fontFamily: '"Fira Code", monospace',
+                whiteSpace: 'nowrap',
+                flexShrink: 0,
+              }}
+            >
+              RD$ {row.value.toLocaleString()}
+            </Typography>
+          </Box>
+        ))}
+      </Box>
+
+      <Divider sx={{ my: 1.5 }} />
+
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 2,
+          px: 1.5,
+          py: 1.5,
+          borderRadius: 2,
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark'
+              ? 'rgba(5,150,105,0.12)'
+              : 'rgba(5,150,105,0.07)',
+        }}
+      >
+        <Typography
+          variant="body2"
+          fontWeight={700}
+        >
+          Total Neto
+        </Typography>
+
+        <Typography
+          variant="body1"
+          fontWeight={700}
+          color="success.main"
+          sx={{
+            fontFamily: '"Fira Code", monospace',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          RD$ {totalPayment.toLocaleString()}
+        </Typography>
+      </Box>
+    </Box>
   )
 }
 

@@ -11,13 +11,19 @@ import { useContext } from 'react'
 import { GradeAndPeriodContext } from '../Context/GradeAndPeriodContext'
 
 const steps = [
-  'Tener presente a cuál de las 2 categorías pertenece, ya que el costo por crédito varía.',
-  'Seleccionar el tipo de Grado correspondiente.',
+  'Seleccionar el nivel académico correspondiente: Grado o Posgrado.',
+
   'Seleccionar uno de los 3 métodos de pago brindados por la universidad. Puede ver cómo varían los montos con solo cambiar la modalidad una vez hecho el cálculo.',
-  'Hay asignaturas que agregan un monto extra por Laboratorio. Debe seleccionar cuáles en el botón "Seleccionar Labs", donde puede verificar todas las asignaturas con este costo adicional.',
-  'Si su carrera requiere recursos de tecnología (ISO, ISC, etc.) marque la casilla de Recursos Tecnológicos.',
-  'Debe saber con exactitud la cantidad de créditos preseleccionados. Vaya a BANNER → Inscripción, horario y planificación → Ver información de inscripción, seleccione su periodo y vea Inscritas: N.',
-  'Presione Calcular colegiatura para obtener el total del cuatrimestre. Una vez calculado, puede cambiar el método de pago para comparar opciones.',
+
+  'Hay asignaturas que agregan un monto extra por Laboratorio. Debe seleccionar cuáles en el botón "Seleccionar Labs".',
+
+  'Algunas asignaturas incluyen costos adicionales por simuladores, objetos de aprendizaje o microcredenciales. Seleccione las que correspondan.',
+
+  'Si su carrera requiere recursos de tecnología, marque la casilla de Recursos Tecnológicos.',
+
+  'Debe saber con exactitud la cantidad de créditos preseleccionados.',
+
+  'Presione Calcular colegiatura para obtener el total estimado del cuatrimestre.',
 ]
 
 function HelpContainer() {
